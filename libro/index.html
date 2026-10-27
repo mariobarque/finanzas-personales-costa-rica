@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El método aburrido de construir tus finanzas - Versión 2</title>
+<meta name="author" content="Mario Barrantes">
+<style>
+:root { --ink:#23352b; --green:#24543f; --gold:#bd8535; --muted:#525b55; }
+* { box-sizing:border-box; }
+html { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+body { margin:0; color:#202520; font-family:Cambria,Georgia,serif;
+       font-size:11.2pt; line-height:1.35; overflow-wrap:break-word; }
+p { margin:0 0 .55em; orphans:3; widows:3; }
+a { color:var(--green); text-decoration:underline; text-underline-offset:.12em; }
+a:focus-visible { outline:3px solid #ac6419; outline-offset:3px; }
+h1,h2,h3 { font-family:"Segoe UI",Arial,sans-serif; color:var(--green);
+           line-height:1.22; break-after:avoid; }
+h1 { font-size:19pt; margin:0 0 .9em; border-bottom:2px solid #d5b77f; padding-bottom:.4em; }
+h2 { font-size:13pt; margin:.95em 0 .45em; }
+h3 { font-size:11.5pt; margin:1em 0 .4em; }
+ul,ol { padding-left:1.25em; margin:.25em 0 .7em; }
+li { margin:.18em 0; orphans:2; widows:2; }
+table { width:100%; border-collapse:collapse; margin:.8em 0 1em;
+        font-size:9.6pt; line-height:1.35; }
+thead { display:table-header-group; }
+th { background:var(--green); color:white; text-align:left; font-weight:600;
+     font-family:"Segoe UI",Arial,sans-serif; }
+th,td { padding:.42em .45em; border-bottom:1px solid #d5dbd4; vertical-align:top; }
+tbody tr:nth-child(even) { background:#f3f5ef; }
+tr { break-inside:avoid; }
+td:empty::after { content:"\00a0"; }
+.money { white-space:nowrap; }
+.caja { padding:.75em .85em .55em; margin:1em 0; border-radius:3px; }
+.caja > :last-child { margin-bottom:.2em; }
+.etiqueta { font:600 9pt/1.3 "Segoe UI",Arial,sans-serif; color:var(--green);
+            margin:0 0 .6em; letter-spacing:.025em; }
+.historia { background:#f8f4e9; border-left:3px solid #b68b49; }
+.ejercicio { border:1.5px solid #769e80; background:#f8fbf6; break-inside:avoid; }
+.biblia,.reflexion { background:#f6f1e7; border-left:3px solid #b18b52; break-inside:avoid; }
+blockquote { margin:.2em 0 .6em; }
+.cita { font-size:9.8pt; text-align:right; color:#584731; }
+.hoja { padding:0; break-inside:avoid; }
+.hoja table { table-layout:fixed; }
+.hoja table:has(th:nth-child(3):last-child) th:first-child { width:52%; }
+.hoja td { height:2.35em; }
+.legal { padding:0; font-size:9.6pt; line-height:1.4; }
+.legal p { margin-bottom:.85em; }
+.ref { font:8pt/0 "Segoe UI",Arial,sans-serif; vertical-align:super; white-space:nowrap; }
+.ref a { text-decoration:none; }
+.fuentes-lista { font-size:9.3pt; line-height:1.38; padding-left:1.6em; }
+.fuentes-lista li { margin-bottom:.8em; overflow-wrap:anywhere; break-inside:avoid; }
+.fuentes-lista li p { margin:0; }
+.cover svg { display:block; width:100%; height:100%; }
+.toc ul { list-style:none; padding:0; }
+.toc li { margin:.5em 0; }
+.toc a { text-decoration:none; display:flex; align-items:baseline; }
+.toc-label { flex:1; }
+.toc-page { min-width:1.75em; text-align:right; margin-left:.7em; }
+.indice { font-family:"Segoe UI",Arial,sans-serif; }
+.nota-edicion { color:var(--muted); font:10pt/1.4 "Segoe UI",Arial,sans-serif; }
+.barra { font:1rem/1.5 "Segoe UI",Arial,sans-serif; padding:1rem; background:#eef4ec;
+         border-radius:.3rem; margin-bottom:2rem; }
+@media screen {
+  body { max-width:48rem; margin:auto; padding:1.6rem; font-size:1.1rem; line-height:1.6; }
+  h1 { margin-top:2.3em; }
+  table { font-size:.96rem; }
+  .cover { max-width:33rem; margin:0 auto 2rem; aspect-ratio:550/850;
+           box-shadow:0 2px 14px #0002; }
+  .legal,.fuentes-lista { font-size:.95rem; }
+  .indice { padding:1rem 0 2rem; border-bottom:1px solid #ccc; }
+  .toc-page { display:none; }
+}
+@media screen and (max-width:560px) {
+  body { padding:1rem; }
+  h1 { font-size:1.55rem; }
+  h2 { font-size:1.2rem; }
+  table { display:block; overflow-x:auto; }
+  th,td { min-width:5rem; }
+  .ref { font-size:.7rem; }
+}
+
+
+@page {
+  size:5.5in 8.5in; margin:.45in .45in .5in;
+  @bottom-center { content:counter(page); font:9pt "Segoe UI",sans-serif; color:#555; }
+}
+@page cover { margin:0; @bottom-center { content:none; } }
+@media print {
+  .cover { page:cover; width:5.5in; height:8.5in; overflow:hidden; break-after:page; }
+  .legal { break-after:page; }
+  .indice { break-after:page; }
+  h1 { break-before:page; }
+  a { text-decoration:none; }
+  table { break-inside:avoid; }
+  .ejercicio:has(+ .biblia),.ejercicio:has(+ .reflexion) { break-after:avoid; }
+  .barra { display:none; }
+}
+</style>
+</head>
+<body>
+<nav class="barra" aria-label="Navegación del sitio"><a href="../index.html">← Libro y herramientas</a> · <a href="el-metodo-aburrido-v2.pdf" download>Descargar PDF</a></nav>
+<section class="cover" aria-label="Portada">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 550 850" width="5.5in" height="8.5in" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">El método aburrido de construir tus finanzas</title>
+  <desc id="desc">Ilustración original: un buey sonriente frente a una rueda de carreta pintada al estilo costarricense, con ramas de café en las esquinas y pilas de monedas que crecen poco a poco.</desc>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF5E6"/>
+      <stop offset="0.55" stop-color="#F3EEDB"/>
+      <stop offset="1" stop-color="#DCEBD2"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F7E3B5" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#F7E3B5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="piel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A9663A"/>
+      <stop offset="1" stop-color="#84482A"/>
+    </linearGradient>
+    <radialGradient id="torso" gradientUnits="userSpaceOnUse" cx="275" cy="560" r="125">
+      <stop offset="0" stop-color="#B5703F"/>
+      <stop offset="0.7" stop-color="#9A5631"/>
+      <stop offset="1" stop-color="#7A4024"/>
+    </radialGradient>
+    <radialGradient id="cara" cx="0.5" cy="0.38" r="0.62">
+      <stop offset="0" stop-color="#C98D5A"/>
+      <stop offset="1" stop-color="#A2603A"/>
+    </radialGradient>
+    <linearGradient id="hocico" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EED3B8"/>
+      <stop offset="1" stop-color="#DDB496"/>
+    </linearGradient>
+    <linearGradient id="cuernoI" gradientUnits="userSpaceOnUse" x1="250" y1="380" x2="163" y2="325">
+      <stop offset="0" stop-color="#F4E9D0"/>
+      <stop offset="0.7" stop-color="#E2D2AE"/>
+      <stop offset="1" stop-color="#8F7A58"/>
+    </linearGradient>
+    <linearGradient id="cuernoD" gradientUnits="userSpaceOnUse" x1="300" y1="380" x2="387" y2="325">
+      <stop offset="0" stop-color="#F4E9D0"/>
+      <stop offset="0.7" stop-color="#E2D2AE"/>
+      <stop offset="1" stop-color="#8F7A58"/>
+    </linearGradient>
+    <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8D46A"/>
+      <stop offset="1" stop-color="#E2A23A"/>
+    </linearGradient>
+    <path id="hoja" d="M0,0 C18,-17 54,-17 74,0 C54,17 18,17 0,0 Z"/>
+    <g id="grano">
+      <circle r="7.2" fill="#B8322A"/>
+      <circle cx="-2.2" cy="-2.4" r="2.2" fill="#F2A08F" opacity="0.85"/>
+      <circle cx="2.6" cy="3" r="1.3" fill="#5A1A14"/>
+    </g>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="550" height="850" fill="url(#fondo)"/>
+  <circle cx="275" cy="425" r="245" fill="url(#halo)"/>
+
+  <!-- Ramas de café en las esquinas superiores -->
+  <g>
+    <path d="M-10,118 C30,96 70,70 104,30 C114,18 120,6 124,-10" stroke="#6E4B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(30,96) rotate(155) scale(0.95)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(40,90) rotate(-20) scale(0.85)" fill="#5E9A66"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(84,52) rotate(-140) scale(0.8)" fill="#4E8B5C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(92,44) rotate(20) scale(0.78)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(116,8) rotate(-30) scale(0.7)" fill="#6BA56C"/>
+    <use href="#grano" xlink:href="#grano" x="52" y="86"/><use href="#grano" xlink:href="#grano" x="62" y="80"/>
+    <use href="#grano" xlink:href="#grano" x="56" y="74"/><use href="#grano" xlink:href="#grano" x="98" y="40"/>
+    <use href="#grano" xlink:href="#grano" x="106" y="32"/><use href="#grano" xlink:href="#grano" x="96" y="27"/>
+  </g>
+  <g transform="translate(550,0) scale(-1,1)">
+    <path d="M-10,118 C30,96 70,70 104,30 C114,18 120,6 124,-10" stroke="#6E4B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(30,96) rotate(155) scale(0.95)" fill="#4E8B5C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(40,90) rotate(-20) scale(0.85)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(84,52) rotate(-140) scale(0.8)" fill="#6BA56C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(92,44) rotate(20) scale(0.78)" fill="#5E9A66"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(116,8) rotate(-30) scale(0.7)" fill="#3F7A4F"/>
+    <use href="#grano" xlink:href="#grano" x="52" y="86"/><use href="#grano" xlink:href="#grano" x="62" y="80"/>
+    <use href="#grano" xlink:href="#grano" x="98" y="40"/><use href="#grano" xlink:href="#grano" x="106" y="32"/>
+  </g>
+
+  <!-- Autor y título -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="275" y="50" font-size="15" letter-spacing="4.5" fill="#4A3222">MARIO BARRANTES</text>
+    <text x="275" y="98" font-size="23" letter-spacing="7" fill="#2F5D46">EL MÉTODO</text>
+    <text x="275" y="176" font-size="86" font-style="italic" fill="#4A3222">aburrido</text>
+    <text x="275" y="222" font-size="29" fill="#1F4D3A">de construir tus finanzas</text>
+  </g>
+
+  <!-- Rueda de carreta pintada -->
+  <g id="rueda">
+    <circle cx="275" cy="425" r="178" fill="#3A2A1F"/>
+    <circle cx="275" cy="425" r="174" fill="none" stroke="#7A6250" stroke-width="1.5"/>
+    <circle cx="275" cy="425" r="170" fill="#B83A2A"/>
+    <g fill="#F6E9CF">
+<path d="M264.8,274.3 L275.0,258.0 L285.2,274.3 Z"/>
+<path d="M288.5,274.6 L301.1,260.1 L308.6,277.8 Z"/>
+<path d="M311.9,278.6 L326.6,266.2 L331.2,284.9 Z"/>
+<path d="M334.3,286.1 L350.8,276.2 L352.5,295.4 Z"/>
+<path d="M355.3,297.1 L373.2,289.9 L371.8,309.1 Z"/>
+<path d="M374.3,311.3 L393.1,306.9 L388.7,325.7 Z"/>
+<path d="M390.9,328.2 L410.1,326.8 L402.9,344.7 Z"/>
+<path d="M404.6,347.5 L423.8,349.2 L413.9,365.7 Z"/>
+<path d="M415.1,368.8 L433.8,373.4 L421.4,388.1 Z"/>
+<path d="M422.2,391.4 L439.9,398.9 L425.4,411.5 Z"/>
+<path d="M425.7,414.8 L442.0,425.0 L425.7,435.2 Z"/>
+<path d="M425.4,438.5 L439.9,451.1 L422.2,458.6 Z"/>
+<path d="M421.4,461.9 L433.8,476.6 L415.1,481.2 Z"/>
+<path d="M413.9,484.3 L423.8,500.8 L404.6,502.5 Z"/>
+<path d="M402.9,505.3 L410.1,523.2 L390.9,521.8 Z"/>
+<path d="M388.7,524.3 L393.1,543.1 L374.3,538.7 Z"/>
+<path d="M371.8,540.9 L373.2,560.1 L355.3,552.9 Z"/>
+<path d="M352.5,554.6 L350.8,573.8 L334.3,563.9 Z"/>
+<path d="M331.2,565.1 L326.6,583.8 L311.9,571.4 Z"/>
+<path d="M308.6,572.2 L301.1,589.9 L288.5,575.4 Z"/>
+<path d="M285.2,575.7 L275.0,592.0 L264.8,575.7 Z"/>
+<path d="M261.5,575.4 L248.9,589.9 L241.4,572.2 Z"/>
+<path d="M238.1,571.4 L223.4,583.8 L218.8,565.1 Z"/>
+<path d="M215.7,563.9 L199.2,573.8 L197.5,554.6 Z"/>
+<path d="M194.7,552.9 L176.8,560.1 L178.2,540.9 Z"/>
+<path d="M175.7,538.7 L156.9,543.1 L161.3,524.3 Z"/>
+<path d="M159.1,521.8 L139.9,523.2 L147.1,505.3 Z"/>
+<path d="M145.4,502.5 L126.2,500.8 L136.1,484.3 Z"/>
+<path d="M134.9,481.2 L116.2,476.6 L128.6,461.9 Z"/>
+<path d="M127.8,458.6 L110.1,451.1 L124.6,438.5 Z"/>
+<path d="M124.3,435.2 L108.0,425.0 L124.3,414.8 Z"/>
+<path d="M124.6,411.5 L110.1,398.9 L127.8,391.4 Z"/>
+<path d="M128.6,388.1 L116.2,373.4 L134.9,368.8 Z"/>
+<path d="M136.1,365.7 L126.2,349.2 L145.4,347.5 Z"/>
+<path d="M147.1,344.7 L139.9,326.8 L159.1,328.2 Z"/>
+<path d="M161.3,325.7 L156.9,306.9 L175.7,311.3 Z"/>
+<path d="M178.2,309.1 L176.8,289.9 L194.7,297.1 Z"/>
+<path d="M197.5,295.4 L199.2,276.2 L215.7,286.1 Z"/>
+<path d="M218.8,284.9 L223.4,266.2 L238.1,278.6 Z"/>
+<path d="M241.4,277.8 L248.9,260.1 L261.5,274.6 Z"/>
+    </g>
+    <circle cx="275" cy="425" r="151" fill="#F0B43A"/>
+    <g fill="#B83A2A">
+<circle cx="275.0" cy="281.5" r="3.1"/>
+<circle cx="299.9" cy="283.7" r="3.1"/>
+<circle cx="324.1" cy="290.2" r="3.1"/>
+<circle cx="346.8" cy="300.7" r="3.1"/>
+<circle cx="367.2" cy="315.1" r="3.1"/>
+<circle cx="384.9" cy="332.8" r="3.1"/>
+<circle cx="399.3" cy="353.2" r="3.1"/>
+<circle cx="409.8" cy="375.9" r="3.1"/>
+<circle cx="416.3" cy="400.1" r="3.1"/>
+<circle cx="418.5" cy="425.0" r="3.1"/>
+<circle cx="416.3" cy="449.9" r="3.1"/>
+<circle cx="409.8" cy="474.1" r="3.1"/>
+<circle cx="399.3" cy="496.8" r="3.1"/>
+<circle cx="384.9" cy="517.2" r="3.1"/>
+<circle cx="367.2" cy="534.9" r="3.1"/>
+<circle cx="346.8" cy="549.3" r="3.1"/>
+<circle cx="324.1" cy="559.8" r="3.1"/>
+<circle cx="299.9" cy="566.3" r="3.1"/>
+<circle cx="275.0" cy="568.5" r="3.1"/>
+<circle cx="250.1" cy="566.3" r="3.1"/>
+<circle cx="225.9" cy="559.8" r="3.1"/>
+<circle cx="203.3" cy="549.3" r="3.1"/>
+<circle cx="182.8" cy="534.9" r="3.1"/>
+<circle cx="165.1" cy="517.2" r="3.1"/>
+<circle cx="150.7" cy="496.8" r="3.1"/>
+<circle cx="140.2" cy="474.1" r="3.1"/>
+<circle cx="133.7" cy="449.9" r="3.1"/>
+<circle cx="131.5" cy="425.0" r="3.1"/>
+<circle cx="133.7" cy="400.1" r="3.1"/>
+<circle cx="140.2" cy="375.9" r="3.1"/>
+<circle cx="150.7" cy="353.2" r="3.1"/>
+<circle cx="165.1" cy="332.8" r="3.1"/>
+<circle cx="182.8" cy="315.1" r="3.1"/>
+<circle cx="203.2" cy="300.7" r="3.1"/>
+<circle cx="225.9" cy="290.2" r="3.1"/>
+<circle cx="250.1" cy="283.7" r="3.1"/>
+    </g>
+    <circle cx="275" cy="425" r="136" fill="#2E5E86"/>
+    <circle cx="275" cy="425" r="129" fill="#F7EEDC"/>
+    <path d="M275.0,298.0 L295.7,347.7 L338.5,315.0 L331.6,368.4 L385.0,361.5 L352.3,404.3 L402.0,425.0 L352.3,445.7 L385.0,488.5 L331.6,481.6 L338.5,535.0 L295.7,502.3 L275.0,552.0 L254.3,502.3 L211.5,535.0 L218.4,481.6 L165.0,488.5 L197.7,445.7 L148.0,425.0 L197.7,404.3 L165.0,361.5 L218.4,368.4 L211.5,315.0 L254.3,347.7 Z" fill="#B83A2A" stroke="#3A2A1F" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M301.9,324.5 L308.0,367.8 L348.5,351.5 L332.2,392.0 L375.5,398.1 L341.0,425.0 L375.5,451.9 L332.2,458.0 L348.5,498.5 L308.0,482.2 L301.9,525.5 L275.0,491.0 L248.1,525.5 L242.0,482.2 L201.5,498.5 L217.8,458.0 L174.5,451.9 L209.0,425.0 L174.5,398.1 L217.8,392.0 L201.5,351.5 L242.0,367.8 L248.1,324.5 L275.0,359.0 Z" fill="#2E5E86" stroke="#3A2A1F" stroke-width="1.2" stroke-linejoin="round"/>
+    <g fill="#F6E9CF">
+<circle cx="275.0" cy="309.0" r="3.4"/>
+<circle cx="333.0" cy="324.5" r="3.4"/>
+<circle cx="375.5" cy="367.0" r="3.4"/>
+<circle cx="391.0" cy="425.0" r="3.4"/>
+<circle cx="375.5" cy="483.0" r="3.4"/>
+<circle cx="333.0" cy="525.5" r="3.4"/>
+<circle cx="275.0" cy="541.0" r="3.4"/>
+<circle cx="217.0" cy="525.5" r="3.4"/>
+<circle cx="174.5" cy="483.0" r="3.4"/>
+<circle cx="159.0" cy="425.0" r="3.4"/>
+<circle cx="174.5" cy="367.0" r="3.4"/>
+<circle cx="217.0" cy="324.5" r="3.4"/>
+    </g>
+    <circle cx="275" cy="425" r="70" fill="#F0B43A" stroke="#3A2A1F" stroke-width="1.2"/>
+    <g fill="#F7EEDC" stroke="#B83A2A" stroke-width="1.6">
+<path transform="rotate(22.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(67.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(112.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(157.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(202.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(247.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(292.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(337.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+    </g>
+    <circle cx="275" cy="425" r="34" fill="#6B4A2E" stroke="#3A2A1F" stroke-width="2"/>
+    <circle cx="275" cy="425" r="20" fill="#3A2A1F"/>
+  </g>
+
+  <!-- Sombra y suelo -->
+  <ellipse cx="275" cy="733" rx="235" ry="15" fill="#6E9A5E" opacity="0.22"/>
+  <ellipse cx="270" cy="734" rx="96" ry="7" fill="#000000" opacity="0.13"/>
+
+  <!-- Buey -->
+  <g id="buey">
+    <path d="M188,630 C186,660 190,690 196,718 L236,718 C238,690 242,660 242,630 Z" fill="#7C4226"/>
+    <path d="M362,630 C364,660 360,690 354,718 L314,718 C312,690 308,660 308,630 Z" fill="#7C4226"/>
+    <path d="M194,714 L238,714 L242,733 L190,733 Z" fill="#2F241C"/>
+    <path d="M356,714 L312,714 L308,733 L360,733 Z" fill="#2F241C"/>
+    <path d="M216,717 L216,733 M334,717 L334,733" stroke="#6A5444" stroke-width="2"/>
+    <ellipse cx="215" cy="680" rx="17" ry="8" fill="#5E321C" opacity="0.25"/>
+    <ellipse cx="335" cy="680" rx="17" ry="8" fill="#5E321C" opacity="0.25"/>
+    <path d="M226,500 C196,508 176,532 172,566 C168,600 172,630 186,652 L248,662 C262,668 288,668 302,662 L364,652 C378,630 382,600 378,566 C374,532 354,508 324,500 Z" fill="url(#torso)"/>
+    <path d="M252,566 C246,596 250,632 262,656 C268,668 282,668 288,656 C300,632 304,596 298,566 Z" fill="#B9774A" opacity="0.75"/>
+    <g stroke="#7C4226" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55">
+      <path d="M262,600 q-6,24 2,50"/>
+      <path d="M288,600 q6,24 -2,50"/>
+      <path d="M190,575 q-8,22 -4,44"/>
+      <path d="M360,575 q8,22 4,44"/>
+    </g>
+    <path d="M248,394 C222,396 196,390 180,372 C169,359 162,343 163,322 C172,338 182,350 197,359 C213,368 231,372 251,374 Z" fill="url(#cuernoI)" stroke="#6E5A40" stroke-width="1.2"/>
+    <path d="M302,394 C328,396 354,390 370,372 C381,359 388,343 387,322 C378,338 368,350 353,359 C337,368 319,372 299,374 Z" fill="url(#cuernoD)" stroke="#6E5A40" stroke-width="1.2"/>
+    <path d="M226,414 C204,408 180,414 162,432 C182,444 206,440 226,428 Z" fill="#97552F"/>
+    <path d="M324,414 C346,408 370,414 388,432 C368,444 344,440 324,428 Z" fill="#97552F"/>
+    <path d="M222,418 C205,414 187,419 173,431 C189,437 206,434 222,425 Z" fill="#E3AE90"/>
+    <path d="M328,418 C345,414 363,419 377,431 C361,437 344,434 328,425 Z" fill="#E3AE90"/>
+    <path d="M275,368 C305,368 326,378 331,398 C335,420 331,446 327,470 C323,494 317,510 313,526 C310,546 298,562 275,562 C252,562 240,546 237,526 C233,510 227,494 223,470 C219,446 215,420 219,398 C224,378 245,368 275,368 Z" fill="url(#cara)"/>
+    <path d="M260,377 C258,365 268,361 272,369 C274,359 286,359 287,369 C293,363 300,371 292,379 Z" fill="#A2603A"/>
+    <path d="M275,392 L284,405 L275,418 L266,405 Z" fill="#F4E5CF"/>
+    <!-- Ojos -->
+    <ellipse cx="243" cy="452" rx="7.5" ry="8.5" fill="#1E1610"/>
+    <ellipse cx="307" cy="452" rx="7.5" ry="8.5" fill="#1E1610"/>
+    <circle cx="245.4" cy="449.3" r="2.5" fill="#FFFFFF"/>
+    <circle cx="309.4" cy="449.3" r="2.5" fill="#FFFFFF"/>
+    <path d="M234,441 Q243,437 252,441 M298,441 Q307,437 316,441" stroke="#5A3420" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="236" cy="482" r="7" fill="#E8907A" opacity="0.35"/>
+    <circle cx="314" cy="482" r="7" fill="#E8907A" opacity="0.35"/>
+    <!-- Hocico -->
+    <ellipse cx="275" cy="538" rx="50" ry="34" fill="url(#hocico)"/>
+    <ellipse cx="256" cy="534" rx="8.5" ry="5.5" transform="rotate(-18 256 534)" fill="#5A3424"/>
+    <ellipse cx="294" cy="534" rx="8.5" ry="5.5" transform="rotate(18 294 534)" fill="#5A3424"/>
+    <path d="M256,556 Q275,568 294,556" stroke="#6B3E2C" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Monedas que crecen poco a poco -->
+  <g stroke="#B9782A" stroke-width="0.8">
+    <g><rect x="72" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="96" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="96" cy="720" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="126" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="150" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="126" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="126" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="700" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="376" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="400" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="700" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="690" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="690" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="680" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="680" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="430" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="454" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="700" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="690" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="690" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="680" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="680" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="670" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="670" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="660" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="660" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g transform="rotate(-6 275 716)">
+      <circle cx="277" cy="718" r="23" fill="#C98326"/>
+      <circle cx="275" cy="716" r="23" fill="url(#oro)"/>
+      <circle cx="275" cy="716" r="18" fill="none" stroke="#C98326" stroke-width="1.5"/>
+      <text x="275" y="725" font-family="Cambria, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#9A5F17" stroke="none" text-anchor="middle">₡</text>
+    </g>
+  </g>
+
+  <!-- Subtítulo -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="275" y="776" font-size="18" font-style="italic" fill="#3E3A33">Finanzas personales para Costa Rica,</text>
+    <text x="275" y="800" font-size="18" font-style="italic" fill="#3E3A33">paso a paso</text>
+    <text x="275" y="834" font-size="11.5" letter-spacing="2.6" fill="#2F5D46">SIN PRISA · SIN DEUDAS · SIN CUENTOS</text>
+  </g>
+</svg>
+</section>
+<div class="caja legal">
+<p><strong>El método aburrido de construir tus finanzas</strong>. Título provisional.</p>
+<p>© 2026 Mario Barrantes. Segunda versión propuesta para revisión del autor. No sustituye el manuscrito original ni constituye una edición aprobada para publicación.</p>
+<p><strong>Para qué sirve.</strong> Este libro ofrece educación financiera general. No sustituye asesoría financiera, legal, tributaria ni de seguros para una situación particular. Ahorrar e invertir no garantiza un resultado; las inversiones pueden perder valor.</p>
+<p><strong>Datos con fecha.</strong> Las fuentes y cifras de esta versión se revisaron con corte al 27 de octubre de 2026. Las reglas, tasas y requisitos pueden cambiar. Confirma la condición vigente con la institución competente antes de contratar, retirar dinero o presentar una solicitud.</p>
+<p><strong>Tres cosas diferentes.</strong> Un dato respaldado por una fuente no es lo mismo que una simulación ni que una regla del método. Los porcentajes de ahorro, las metas de reserva y los criterios para vivienda son orientaciones, no leyes ni garantías.</p>
+<p><strong>Historias y números.</strong> Los personajes y las historias son ficticios. Los montos ilustran decisiones; no representan el costo de vida de todos los hogares ni los ingresos de una ocupación.</p>
+<p><strong>Sin marcas recomendadas.</strong> No se recomienda una entidad o producto comercial. Verifica quién supervisa cada actividad y cuáles son sus condiciones.</p>
+<p><strong>Reflexiones bíblicas.</strong> Son una parte opcional de la identidad del libro. Puedes omitirlas sin perder ninguna instrucción financiera. El texto bíblico ha sido tomado de la Santa Biblia, Nueva Traducción Viviente, © Tyndale House Foundation, 2010. Usado con permiso de Tyndale House Publishers, Inc., Carol Stream, IL 60188, Estados Unidos de América. Todos los derechos reservados.</p>
+<p><strong>Fuentes.</strong> Las llamadas numeradas remiten a las referencias del final. Los recuadros bíblicos reproducen extractos ya incluidos en el manuscrito original; antes de publicar deben comprobarse las condiciones de uso y la fidelidad de la edición final<sup class="ref">[<a href="#fuente-1" aria-label="Fuente 1">1</a>]</sup>.</p>
+<p><strong>Portada.</strong> Se conserva la ilustración original del buey y la rueda de carreta.</p>
+</div>
+<nav aria-label="Contenido" class="indice">
+<h2 id="contenido">Contenido</h2>
+<div class="toc">
+<ul>
+<li><a href="#empieza-aqui-en-cinco-minutos"><span class="toc-label">Empieza aquí en cinco minutos</span><span class="toc-page">4</span></a></li>
+<li><a href="#introduccion-un-metodo-tranquilo-para-una-vida-real"><span class="toc-label">Introducción: un método tranquilo para una vida real</span><span class="toc-page">5</span></a></li>
+<li><a href="#capitulo-1-tu-punto-de-partida-en-costa-rica"><span class="toc-label">Capítulo 1. Tu punto de partida en Costa Rica</span><span class="toc-page">7</span></a></li>
+<li><a href="#capitulo-2-comprar-no-es-lo-mismo-que-estar-bien"><span class="toc-label">Capítulo 2. Comprar no es lo mismo que estar bien</span><span class="toc-page">10</span></a></li>
+<li><a href="#capitulo-3-un-plan-para-la-plata-que-de-verdad-tienes"><span class="toc-label">Capítulo 3. Un plan para la plata que de verdad tienes</span><span class="toc-page">13</span></a></li>
+<li><a href="#capitulo-4-el-mapa-y-el-primer-colchon"><span class="toc-label">Capítulo 4. El mapa y el primer colchón</span><span class="toc-page">19</span></a></li>
+<li><a href="#capitulo-5-menos-deudas-mas-decisiones-propias"><span class="toc-label">Capítulo 5. Menos deudas, más decisiones propias</span><span class="toc-page">22</span></a></li>
+<li><a href="#capitulo-6-una-reserva-que-de-verdad-puedas-usar"><span class="toc-label">Capítulo 6. Una reserva que de verdad puedas usar</span><span class="toc-page">27</span></a></li>
+<li><a href="#capitulo-7-preparar-la-vejez-sin-perseguir-promesas"><span class="toc-label">Capítulo 7. Preparar la vejez sin perseguir promesas</span><span class="toc-page">30</span></a></li>
+<li><a href="#capitulo-8-vivienda-sin-perder-el-sueno"><span class="toc-label">Capítulo 8. Vivienda sin perder el sueño</span><span class="toc-page">35</span></a></li>
+<li><a href="#capitulo-9-patrimonio-tranquilidad-y-generosidad"><span class="toc-label">Capítulo 9. Patrimonio, tranquilidad y generosidad</span><span class="toc-page">39</span></a></li>
+<li><a href="#capitulo-10-trabajar-por-tu-cuenta-sin-apostar-todo"><span class="toc-label">Capítulo 10. Trabajar por tu cuenta sin apostar todo</span><span class="toc-page">42</span></a></li>
+<li><a href="#capitulo-11-que-la-urgencia-no-decida-por-ti"><span class="toc-label">Capítulo 11. Que la urgencia no decida por ti</span><span class="toc-page">45</span></a></li>
+<li><a href="#cierre-el-proximo-paso-si-cuenta"><span class="toc-label">Cierre. El próximo paso sí cuenta</span><span class="toc-page">49</span></a></li>
+<li><a href="#anexos-para-usar-no-para-memorizar"><span class="toc-label">Anexos para usar, no para memorizar</span><span class="toc-page">50</span></a></li>
+<li><a href="#fuentes"><span class="toc-label">Fuentes</span><span class="toc-page">58</span></a></li>
+</ul>
+</div>
+</nav>
+<h1 id="empieza-aqui-en-cinco-minutos">Empieza aquí en cinco minutos</h1>
+<p>Si hoy no alcanza, las deudas pesan o ya puedes ahorrar, tu punto de partida será distinto.</p>
+<p>En una hoja o nota del celular, escribe:</p>
+<ol>
+<li><strong>Cuánto dinero tienes disponible hoy.</strong> No sumes el límite de una tarjeta ni un préstamo que podrían darte.</li>
+<li><strong>Cuándo y cuánto cobrarás.</strong> Separa los ingresos confirmados de los que todavía son una posibilidad.</li>
+<li><strong>Qué necesitas pagar hasta entonces.</strong> Incluye comida, vivienda, salud, cuidados, servicios, transporte y obligaciones alimentarias.</li>
+</ol>
+<p>Ahora elige tu punto de entrada:</p>
+<table>
+<thead>
+<tr>
+<th>Si hoy…</th>
+<th>Empieza por…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No alcanza para lo indispensable</td>
+<td>El capítulo 3: «Cuando no alcanza». Tu primera meta es estabilizar, no invertir.</td>
+</tr>
+<tr>
+<td>Alcanza para vivir, pero las deudas te ahogan</td>
+<td>El plan del capítulo 3 y el capítulo 5. Primero revisa si puedes cubrir los pagos exigibles.</td>
+</tr>
+<tr>
+<td>Puedes ahorrar y no tienes deudas costosas</td>
+<td>Los capítulos 6 y 7: reserva e inversión según tu objetivo.</td>
+</tr>
+</tbody>
+</table>
+<p>Si hay amenazas, riesgo de violencia o una emergencia de salud, <strong>la seguridad va antes que cualquier paso financiero</strong>. El capítulo 11 explica cómo buscar ayuda ante amenazas y estafas.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Tu primera decisión.</strong> Completa: «Antes de mi próximo ingreso necesito resolver ________. Hoy puedo dar este paso: ________».</p>
+<p>No anotes claves, códigos ni números completos de tarjetas.</p>
+</div>
+<h1 id="introduccion-un-metodo-tranquilo-para-una-vida-real">Introducción: un método tranquilo para una vida real</h1>
+<p>Andrea gana bien, pero el salario se le va antes de terminar el mes. Sofía trabaja por encargo y nunca recibe lo mismo. Marta cobra por horas y tiene gastos que no puede recortar sin afectar a su familia.</p>
+<p>Sus problemas no son iguales. Sus planes tampoco pueden serlo.</p>
+<p>Este libro busca ayudarte a ordenar la plata con la que cuentas, reducir decisiones que te perjudican y preparar lo que viene. No promete que cualquier ingreso alcance para todo. Un presupuesto puede mostrar que falta dinero; no puede crearlo.</p>
+<p>Cuando eso ocurre, la respuesta no es avergonzarte. Es proteger lo indispensable, buscar apoyos, revisar obligaciones y explorar ingresos posibles sin poner en riesgo tu salud o tu seguridad.</p>
+<h2 id="lo-aburrido-es-el-metodo-no-tu-vida">Lo aburrido es el método, no tu vida</h2>
+<p>Las promesas de riqueza rápida suelen pedirte prisa. Este método te invita a detenerte antes de comprar, firmar o invertir.</p>
+<p>Se inspira en el orden práctico de los «pasos de bebé» de Dave Ramsey<sup class="ref">[<a href="#fuente-2" aria-label="Fuente 2">2</a>]</sup>. Pero no pretende trasladar sus reglas sin cambios: vivir en Costa Rica exige considerar la CCSS, las pensiones, los ingresos variables, los colones y dólares, y las posibilidades reales de cada hogar.</p>
+<p>La idea es sencilla: <strong>cuidar lo indispensable, recuperar margen y tomar decisiones que puedas sostener</strong>.</p>
+<p>Eso no significa renunciar a todos los gustos ni medir tu valor por el saldo de una cuenta. El dinero es una herramienta para vivir, no una calificación de quién eres.</p>
+<h2 id="por-que-un-buey">Por qué un buey</h2>
+<p>Durante el siglo XIX, las carretas llevaban café del Valle Central a Puntarenas en viajes de diez a quince días. La UNESCO reconoce la tradición del boyeo y las carretas como patrimonio cultural inmaterial<sup class="ref">[<a href="#fuente-3" aria-label="Fuente 3">3</a>]</sup>.</p>
+<p>El buey nos recuerda la constancia. Pero ninguna carreta avanza igual en todos los caminos: importan el terreno, la carga y la ayuda disponible.</p>
+<p>Por eso aquí no vas a encontrar una carrera contra otras personas. Vas a encontrar un mapa para tu situación.</p>
+<h2 id="como-leerlo">Cómo leerlo</h2>
+<p>La primera parte ayuda a entender y organizar. La segunda desarrolla los siete pasos del buey. La tercera trata de pequeños negocios y protección frente a estafas.</p>
+<p>Cada capítulo termina con una acción breve. Los anexos incluyen hojas que puedes copiar, un glosario y una consulta técnica opcional. Puedes trabajar en papel; no necesitas una aplicación de pago.</p>
+<p>Si no entiendes una palabra, consulta el glosario. Si una regla no cabe en tu realidad, busca la alternativa que se explica junto a ella. Pedir ayuda también cuenta como avanzar.</p>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>La riqueza lograda de la noche a la mañana pronto desaparece; pero la que es fruto del arduo trabajo aumenta con el tiempo.</p>
+</blockquote>
+<p class="cita">Proverbios 13:11 (NTV)</p>
+</div>
+<h1 id="capitulo-1-tu-punto-de-partida-en-costa-rica">Capítulo 1. Tu punto de partida en Costa Rica</h1>
+<p>Antes de hacer un plan, conviene saber qué protecciones tienes, cuáles dependen de requisitos y qué gastos seguirán siendo tuyos.</p>
+<h2 id="la-caja-protege-pero-no-paga-todo-lo-que-ocurre-en-una-familia">La Caja protege, pero no paga todo lo que ocurre en una familia</h2>
+<p>La Caja Costarricense de Seguro Social, o CCSS, es una parte importante de la protección de salud. La modalidad de aseguramiento y las obligaciones no son iguales para todas las personas.</p>
+<p>Si tienes empleo asalariado, revisa que los salarios y cotizaciones se reporten correctamente. Si trabajas por tu cuenta, consulta la modalidad que corresponde a tu actividad e ingresos. <strong>No supongas que cualquier venta ocasional genera exactamente la misma obligación.</strong> El reglamento antiguo citado en la primera versión ya contenía excepciones por ingresos bajos; confirma con la CCSS la norma y el umbral vigentes<sup class="ref">[<a href="#fuente-4" aria-label="Fuente 4">4</a>]</sup>.</p>
+<p>Si no tienes recursos o perdiste el empleo, pregunta por las opciones de aseguramiento y atención aplicables a tu situación. No te des por excluido sin consultar.</p>
+<p>Tener cobertura no elimina gastos como transporte a citas, cuidados, pérdida de ingresos o algunas necesidades que debas resolver por otra vía. Inclúyelos en tu plan cuando sean previsibles.</p>
+<h2 id="educacion-publica-no-significa-que-estudiar-no-cueste">Educación pública no significa que estudiar no cueste</h2>
+<p>La Constitución establece que la educación preescolar, general básica y diversificada es obligatoria y gratuita en el sistema público. También contempla facilitar estudios superiores a quienes no tienen recursos<sup class="ref">[<a href="#fuente-5" aria-label="Fuente 5">5</a>]</sup>.</p>
+<p>Eso es una protección importante. Aun así, una familia puede necesitar pagar materiales, transporte, conectividad, alimentación o alojamiento. Una beca depende de requisitos y no debe darse por aprobada antes de tiempo.</p>
+<p>El ahorro para estudiar no es un paso obligatorio idéntico para todos, pero <strong>sí puede ser una meta de tu hogar</strong>, junto con capacitación para mejorar el trabajo o cambiar de actividad.</p>
+<h2 id="pension-rop-y-fcl-no-son-lo-mismo">Pensión, ROP y FCL: no son lo mismo</h2>
+<p>Tu <strong>pensión básica</strong> puede venir del régimen de Invalidez, Vejez y Muerte (IVM) de la CCSS o de otro régimen. Revisa tus cotizaciones y requisitos antes de estar cerca del retiro.</p>
+<p>El <strong>Régimen Obligatorio de Pensiones</strong>, o ROP, es un ahorro complementario para la vejez de las personas trabajadoras a quienes les aplica. Lo administra una operadora de pensiones.</p>
+<p>El <strong>Fondo de Capitalización Laboral</strong>, o FCL, es distinto: es ahorro laboral. La Superintendencia de Pensiones (SUPEN) informa que el patrono aporta el 1,5 % del salario reportado a la CCSS. Puede retirarse al terminar la relación laboral o al cumplir cinco años continuos con el mismo patrono, entre otros supuestos<sup class="ref">[<a href="#fuente-6" aria-label="Fuente 6">6</a>]</sup>.</p>
+<p>No cuentes el FCL dos veces: como plata para sobrevivir al perder el empleo y, al mismo tiempo, como una pensión intacta para el futuro.</p>
+<h2 id="si-se-interrumpe-el-ingreso">Si se interrumpe el ingreso</h2>
+<p>No hagas el presupuesto suponiendo que recibirás automáticamente tu salario completo después de un despido o una enfermedad.</p>
+<p>La cesantía depende de la causa de terminación y de las reglas aplicables; el Código de Trabajo limita el reconocimiento de años para ese auxilio. Una incapacidad puede dar derecho a un subsidio, pero su monto y requisitos deben confirmarse<sup class="ref">[<a href="#fuente-7" aria-label="Fuente 7">7</a>, <a href="#fuente-8" aria-label="Fuente 8">8</a>]</sup>.</p>
+<p>Revisa también el FCL, los beneficios de tu empleo y cualquier póliza que tengas. Un seguro privado que cubra ciertos riesgos no equivale a protección ilimitada: importan sus exclusiones, plazos y condiciones.</p>
+<h2 id="protege-desde-ahora-a-quienes-dependen-de-ti">Protege desde ahora a quienes dependen de ti</h2>
+<p>No hay que esperar a tener una casa pagada para pensar en protección.</p>
+<p>Si alguien depende de tu ingreso, revisa qué ocurriría si faltaras o no pudieras trabajar. Considera coberturas disponibles, su costo y sus exclusiones. Confirma la autorización de la aseguradora y del producto ante la Superintendencia General de Seguros, o SUGESE.</p>
+<p>Un seguro de vida que cubre un plazo determinado puede ser una opción; no es una receta para todos. Antes de contratar, pregunta cuánto se paga, qué cubre, qué no cubre y cómo se solicita el beneficio.</p>
+<p>También deja ordenados documentos y contactos útiles. No necesitas entregar contraseñas para que tu familia sepa dónde consultar.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Esta semana.</strong> Elige una consulta: tu aseguramiento, tu historial de pensión, tu FCL o una cobertura de la que depende tu familia. Anota qué sabes y qué falta confirmar.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Mantente al tanto del estado de tus rebaños y entrégate de lleno al cuidado de tus ganados, porque las riquezas no duran para siempre, y tal vez la corona no pase a la próxima generación.</p>
+</blockquote>
+<p class="cita">Proverbios 27:23-24 (NTV)</p>
+</div>
+<h1 id="capitulo-2-comprar-no-es-lo-mismo-que-estar-bien">Capítulo 2. Comprar no es lo mismo que estar bien</h1>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Andrea recibe <span class="money">₡1 400 000</span> netos al mes. Tiene tres tarjetas con saldo, un préstamo por la boda y una deuda del carro. No sabe cuánto debe en total; sabe cuánto le toca pagar esta semana.</p>
+<p>Un viernes acepta otra salida para no explicar que está corta de plata. El lunes revisa la cuenta y vuelve a sentir el mismo peso.</p>
+</div>
+<p>Andrea necesita cambiar decisiones, pero no toda dificultad económica nace de gastar por aparentar. Una enfermedad, salarios insuficientes, responsabilidades de cuidado o la pérdida de empleo pueden romper un presupuesto.</p>
+<p><strong>Antes de buscar un mal hábito, averigua si el ingreso alcanza para lo necesario.</strong></p>
+<h2 id="el-gasto-que-busca-aprobacion">El gasto que busca aprobación</h2>
+<p>Un celular, un carro o una fiesta pueden tener valor para ti. El problema aparece cuando compras principalmente para evitar sentirte menos que otros.</p>
+<p>Hazte una pregunta sin regaño: «Si nadie fuera a verlo, ¿igual lo elegiría?».</p>
+<p>Las redes muestran una parte de la vida, no el estado de cuenta completo. Comparar tu presupuesto con una vitrina ajena no te da información suficiente para decidir.</p>
+<h2 id="pagar-sin-mirar">Pagar sin mirar</h2>
+<p>Una tarjeta, una transferencia o una compra en pocos clics puede hacer más fácil perder la cuenta. El efectivo tampoco corrige por sí solo todos los impulsos.</p>
+<p>No necesitas adivinar qué medio te hará gastar menos: observa qué ocurre contigo. Puedes usar una lista, un límite por categoría o una cuenta separada. Si el crédito te lleva a comprar lo que no puedes pagar, detener su uso es una medida de protección.</p>
+<p>Más adelante, este método propone no financiar nuevas compras de consumo. Es una elección conservadora del plan, no la afirmación de que toda persona que usa una tarjeta es irresponsable.</p>
+<h2 id="una-compra-puede-traer-otras">Una compra puede traer otras</h2>
+<p>Compras un mueble y de pronto quieres cambiar la lámpara. Estrenas teléfono y aparecen accesorios. El costo de la primera compra puede ser solo el comienzo.</p>
+<p>Antes de decidir, suma lo que vendrá después: mantenimiento, repuestos, transporte, suscripciones o seguros. Un precio de entrada bajo puede esconder un compromiso mensual alto.</p>
+<h2 id="el-dinero-si-importa-la-emocion-de-estrenar-no-es-todo">El dinero sí importa; la emoción de estrenar no es todo</h2>
+<p>No sería justo decirle a una familia que no tiene para comer que el dinero no mejora la vida. Tener recursos puede dar seguridad, opciones y bienestar.</p>
+<p>Tampoco conviene convertir un estudio antiguo sobre lotería en una regla universal. Una investigación posterior encontró mejoras duraderas en satisfacción vital entre ganadores de premios grandes, aunque los efectos sobre felicidad y salud mental fueron menores<sup class="ref">[<a href="#fuente-9" aria-label="Fuente 9">9</a>]</sup>.</p>
+<p>La pregunta útil no es si el dinero «da felicidad» en abstracto. Es si esta decisión mejora tu vida o solo te deja una emoción corta y una obligación larga.</p>
+<h2 id="cinco-pausas-que-ayudan">Cinco pausas que ayudan</h2>
+<ul>
+<li><strong>Espera antes de una compra no urgente.</strong> Prueba 48 horas; para una decisión grande, más tiempo.</li>
+<li><strong>Pon un monto a los gustos.</strong> Disfrutar algo previsto no es fallar.</li>
+<li><strong>Quita estímulos que te cuestan.</strong> Puedes silenciar ofertas y borrar tarjetas guardadas.</li>
+<li><strong>Usa una lista.</strong> En el supermercado, en internet y antes de aceptar una promoción.</li>
+<li><strong>Mira el costo completo.</strong> No solo la cuota que «sí cabe».</li>
+</ul>
+<p>No conviertas el plan en un castigo permanente. Si exige una vida imposible, será difícil sostenerlo.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Diez minutos.</strong> Revisa cinco compras recientes. Marca las que repetirías y las que no. Suma el dinero de las que no repetirías; no cuentes solo las marcas. Elige un cambio pequeño para la próxima semana.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Y luego dijo: «¡Tengan cuidado con toda clase de avaricia! La vida no se mide por cuánto tienen».</p>
+</blockquote>
+<p class="cita">Lucas 12:15 (NTV)</p>
+</div>
+<h1 id="capitulo-3-un-plan-para-la-plata-que-de-verdad-tienes">Capítulo 3. Un plan para la plata que de verdad tienes</h1>
+<p>Un presupuesto es una lista de decisiones sobre dinero y fechas. No necesita una aplicación ni fórmulas complicadas.</p>
+<p>Primero anota lo que entra. Después, lo que debes cubrir. Si falta dinero, deja visible el faltante. No lo escondas en una categoría llamada «otros».</p>
+<h2 id="empieza-por-lo-indispensable">Empieza por lo indispensable</h2>
+<p>Protege alimentación, vivienda, salud, cuidados, servicios esenciales y transporte necesario. Incluye las obligaciones alimentarias y los gastos educativos indispensables.</p>
+<p>Los cuidados cuentan: pagar a alguien para atender a una persona dependiente puede ser lo que permite trabajar. Una medicina necesaria no es un gusto.</p>
+<p>Después considera pagos de deudas, gastos próximos y tu meta actual. Las donaciones y los gustos también pueden tener espacio, pero <strong>no se exige dar dinero que hace falta para necesidades básicas</strong>.</p>
+<h2 id="que-significa-ingreso-neto">Qué significa «ingreso neto»</h2>
+<p>Si eres asalariado, distingue el salario bruto de lo que queda después de deducciones. Revisa cuáles son obligatorias y cuáles son préstamos, ahorros u otros pagos por planilla.</p>
+<p>Si construyes el presupuesto con el depósito que recibes, no vuelvas a restar una cuota que ya te rebajaron. Sí debes registrar esa deuda en tu inventario, para conocer su saldo y su costo.</p>
+<p>Si trabajas por tu cuenta, <strong>las ventas no son dinero libre para la casa</strong>. Separa costos y obligaciones del negocio antes de calcular cuánto puedes retirar.</p>
+<h2 id="cuando-si-alcanza">Cuando sí alcanza</h2>
+<p>Un plan «base cero» asigna una tarea a todo el dinero disponible. No significa gastarlo todo: ahorrar también es una tarea.</p>
+<p>Este ejemplo usa <span class="money">₡600 000</span> disponibles después de deducciones obligatorias. Sus pagos de deuda no están descontados de ese monto.</p>
+<table>
+<thead>
+<tr>
+<th>Destino</th>
+<th>Monto mensual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vivienda</td>
+<td><span class="money">₡180 000</span></td>
+</tr>
+<tr>
+<td>Comida</td>
+<td><span class="money">₡130 000</span></td>
+</tr>
+<tr>
+<td>Servicios esenciales</td>
+<td><span class="money">₡40 000</span></td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td><span class="money">₡45 000</span></td>
+</tr>
+<tr>
+<td>Salud y cuidados</td>
+<td><span class="money">₡50 000</span></td>
+</tr>
+<tr>
+<td>Educación y materiales</td>
+<td><span class="money">₡25 000</span></td>
+</tr>
+<tr>
+<td>Gastos previsibles apartados</td>
+<td><span class="money">₡30 000</span></td>
+</tr>
+<tr>
+<td>Pagos mínimos de deudas</td>
+<td><span class="money">₡60 000</span></td>
+</tr>
+<tr>
+<td>Meta actual</td>
+<td><span class="money">₡30 000</span></td>
+</tr>
+<tr>
+<td>Gustos y aportes voluntarios</td>
+<td><span class="money">₡10 000</span></td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong><span class="money">₡600 000</span></strong></td>
+</tr>
+</tbody>
+</table>
+<p>Es un ejemplo, no un presupuesto ideal de Costa Rica. Tu hogar puede necesitar categorías y montos muy diferentes.</p>
+<h2 id="cuando-no-alcanza">Cuando no alcanza</h2>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Marta trabaja por horas. Este mes espera recibir <span class="money">₡320 000</span>, pero los gastos indispensables de su hogar suman <span class="money">₡350 000</span>. Faltan <span class="money">₡30 000</span>, antes de cualquier ahorro.</p>
+<p>Una hoja más bonita no elimina ese faltante. Su primer avance es verlo y dejar de comprometer dinero que no tiene.</p>
+</div>
+<p>Si esta es tu situación:</p>
+<ol>
+<li><strong>Separa lo urgente de lo que puede esperar.</strong> No recortes comida necesaria, medicinas o cuidados para aparentar que el presupuesto cuadra.</li>
+<li><strong>Busca apoyos y derechos.</strong> Consulta en el Instituto Mixto de Ayuda Social (IMAS), la municipalidad, la CCSS o el centro educativo, según la necesidad. Cada ayuda tiene requisitos; no cuentes con ella antes de confirmarla.</li>
+<li><strong>Conversa sobre pagos antes de que el problema crezca.</strong> Pide condiciones por escrito y ofrece solo un monto sostenible.</li>
+<li><strong>Revisa cambios posibles de ingreso o costo.</strong> Considera transporte, horario, salud y cuidados. Trabajar más horas no siempre es posible ni conveniente.</li>
+<li><strong>No te endeudes para cumplir una meta de ahorro.</strong> Primero busca cerrar el faltante.</li>
+</ol>
+<p>Si después de lo indispensable no quedan recursos para los pagos de deuda, ve al apartado «Si no puedes pagar» del capítulo 5. No necesitas esperar a «fallar» varios meses para buscar orientación.</p>
+<p>Tu meta inmediata puede ser conseguir una valoración de apoyo, evitar una comisión o hacer un acuerdo realista. No tiene que ser invertir.</p>
+<h2 id="el-calendario-importa-tanto-como-el-total">El calendario importa tanto como el total</h2>
+<p>Puedes tener un mes equilibrado y quedarte sin efectivo antes del viernes.</p>
+<p>Anota cada ingreso en la fecha probable de recibirlo y cada pago en su vencimiento. Si cobras por semana o quincena, distribuye primero lo que necesitas hasta el siguiente ingreso.</p>
+<p>No trates todos los meses como si tuvieran exactamente cuatro pagos semanales. Usa las fechas reales. El anexo B sirve para hacerlo en papel.</p>
+<h2 id="si-tu-ingreso-cambia">Si tu ingreso cambia</h2>
+<p>No planees con tu mejor mes. Revisa varios meses y elige una base prudente, sin olvidar que podría haber uno peor.</p>
+<p>Cuando recibas más, antes de acelerar deudas o comprar algo:</p>
+<ul>
+<li>aparta los costos y obligaciones del negocio, si lo tienes;</li>
+<li>cubre las necesidades y compromisos del periodo;</li>
+<li>reserva para semanas o meses con menos ingreso;</li>
+<li>destina el excedente real a tu siguiente meta.</li>
+</ul>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Sofía vende alimentos por encargo. En un mes factura <span class="money">₡600 000</span>. Aparta <span class="money">₡300 000</span> para costos, <span class="money">₡60 000</span> para obligaciones previstas y <span class="money">₡40 000</span> de reserva del negocio. Quedan <span class="money">₡200 000</span> para retirar hacia la casa.</p>
+<p>Los <span class="money">₡60 000</span> son un monto ilustrativo, no una tasa de impuestos o de la CCSS. Sofía debe calcular sus obligaciones reales.</p>
+</div>
+<h2 id="gastos-que-sabes-que-vienen">Gastos que sabes que vienen</h2>
+<p>Marchamo, seguros, materiales escolares, mantenimiento y celebraciones no tienen por qué sorprenderte cada año.</p>
+<p>Si faltan doce meses, puedes repartir el monto entre doce. Si faltan tres, divide <strong>lo que falta ahorrar entre tres</strong>, no entre doce.</p>
+<p>Por ejemplo: un gasto de <span class="money">₡180 000</span> vence dentro de tres meses y ya tienes <span class="money">₡60 000</span>. Faltan <span class="money">₡120 000</span>; necesitas apartar <span class="money">₡40 000</span> por mes. Si no puedes, ahora sabes cuánto falta y puedes buscar alternativas con tiempo.</p>
+<p>Si no lograste ahorrar porque el ingreso no alcanzó, eso no demuestra falta de interés. El plan debe mostrar la dificultad, no convertirla en culpa.</p>
+<h2 id="aguinaldo-y-salario-escolar">Aguinaldo y salario escolar</h2>
+<p>Decide el uso de estos pagos antes de recibirlos. Primero mira necesidades próximas, compromisos y reserva; después distribuye el resto entre metas, celebraciones y ayuda a otros.</p>
+<p><strong>Aguinaldo.</strong> Para la empresa privada, el MTSS explica el cálculo con salarios ordinarios y extraordinarios del 1 de diciembre al 30 de noviembre, divididos entre doce, y el pago en los primeros veinte días de diciembre<sup class="ref">[<a href="#fuente-8" aria-label="Fuente 8">8</a>]</sup>. Para pagos con cargo al Presupuesto Nacional, Hacienda documenta un periodo de noviembre a octubre<sup class="ref">[<a href="#fuente-10" aria-label="Fuente 10">10</a>]</sup>. Confirma el régimen que te corresponde.</p>
+<p><strong>Salario escolar.</strong> No es un pago que reciba automáticamente toda persona trabajadora. En el régimen descrito por Hacienda se calcula con los salarios brutos devengados durante el año anterior, incluidos extraordinarios, multiplicados por 8,33 %, y se aplican las deducciones correspondientes<sup class="ref">[<a href="#fuente-11" aria-label="Fuente 11">11</a>]</sup>. Consulta tu monto neto y fecha; no lo describas en tu plan como un rebajo mensual adicional sin revisar la planilla.</p>
+<h2 id="un-plan-compartido-sin-perder-autonomia">Un plan compartido, sin perder autonomía</h2>
+<p>Si compartes gastos con una pareja, familia o compañeros de vivienda, acuerden qué paga cada persona y cuándo. No hace falta estar casados para conversar sobre dinero.</p>
+<p>Una reunión breve al mes puede ayudar. Hablen de metas y dificultades, no solo de quién gastó.</p>
+<p>Compartir un plan no obliga a compartir contraseñas ni a renunciar a una cuenta personal. Si hay control, amenazas o violencia económica, prioriza tu seguridad y busca apoyo especializado antes de revelar información que pueda ponerte en riesgo.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Tu próxima semana.</strong> Llena el calendario del anexo B. Si el saldo queda negativo, marca la primera fecha en que ocurre y una gestión posible para resolverla.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Sin embargo, no comiences sin calcular el costo. Pues, ¿quién comenzaría a construir un edificio sin primero calcular el costo para ver si hay suficiente dinero para terminarlo?</p>
+</blockquote>
+<p class="cita">Lucas 14:28 (NTV)</p>
+</div>
+<h1 id="capitulo-4-el-mapa-y-el-primer-colchon">Capítulo 4. El mapa y el primer colchón</h1>
+<p>Los pasos sirven para decidir prioridades. No son un examen ni una fila en la que debas esperar para atender una urgencia.</p>
+<table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Piso firme</strong></td>
+<td>Proteger lo indispensable, conocer ingresos y pagos, buscar cómo cerrar faltantes y evitar nuevas deudas de consumo.</td>
+</tr>
+<tr>
+<td><strong>1. Colchón de arranque</strong></td>
+<td>Reunir una pequeña reserva accesible y avanzar hacia un mes de gastos esenciales.</td>
+</tr>
+<tr>
+<td><strong>2. Reducir deudas</strong></td>
+<td>Cubrir pagos exigibles y concentrar el extra posible en una deuda a la vez.</td>
+</tr>
+<tr>
+<td><strong>3. Reserva más completa</strong></td>
+<td>Ampliar gradualmente la protección ante una interrupción de ingresos.</td>
+</tr>
+<tr>
+<td><strong>4. Preparar la vejez</strong></td>
+<td>Revisar pensiones y ahorrar o invertir según capacidad, plazo y riesgo.</td>
+</tr>
+<tr>
+<td><strong>5. Resolver la vivienda</strong></td>
+<td>Alquilar o comprar con un costo sostenible para tu situación.</td>
+</tr>
+<tr>
+<td><strong>6. Fortalecer el patrimonio</strong></td>
+<td>Si tienes hipoteca, evaluar abonos; si no, avanzar en otras metas.</td>
+</tr>
+<tr>
+<td><strong>7. Sostener y compartir</strong></td>
+<td>Mantener el plan, disfrutar y ayudar sin comprometer lo indispensable.</td>
+</tr>
+</tbody>
+</table>
+<p>Las aportaciones obligatorias, la salud, la protección de dependientes y los pagos legales no esperan hasta un paso futuro. Tampoco necesitas terminar el mapa para capacitarte o probar una actividad pequeña que te ayude a generar ingresos.</p>
+<p>La idea general es crear una reserva inicial, reducir deuda costosa y ampliar protección antes de asumir inversiones con riesgo. Algunas decisiones se trabajan al mismo tiempo.</p>
+<h2 id="un-piso-firme-no-es-tener-una-vida-perfecta">Un piso firme no es tener una vida perfecta</h2>
+<p>Empieza por conocer lo que debes y por dejar de financiar compras que pueden esperar. Si hay atrasos, busca un acuerdo sostenible.</p>
+<p>Si tu presupuesto tiene déficit, sigue la ruta del capítulo 3. No se te pide cumplir un porcentaje que solo podrías conseguir dejando de comer.</p>
+<h2 id="paso-1-un-colchon-por-escalones">Paso 1: un colchón por escalones</h2>
+<p>La meta inicial del método es llegar a <strong>un mes de gastos esenciales</strong>. No a un salario completo ni a una cifra igual para todos.</p>
+<p>Puedes comenzar con escalones:</p>
+<ol>
+<li>Un monto que cubra un imprevisto pequeño de tu realidad.</li>
+<li>Una semana de gastos indispensables.</li>
+<li>Un mes.</li>
+</ol>
+<p>Para una persona, el primer escalón serán <span class="money">₡5000</span>. Para otra, será mucho más. No existe un plazo universal de uno o dos meses.</p>
+<p>Si puedes apartar <span class="money">₡2000</span> por semana, cuatro aportes suman <span class="money">₡8000</span>. Si hoy no puedes apartar nada, tu trabajo es estabilizar el presupuesto, no pedir prestado para llenar el sobre.</p>
+<h2 id="donde-ponerlo">Dónde ponerlo</h2>
+<p>Busca un lugar separado del gasto diario, seguro y de acceso sencillo. Compara costos, montos mínimos y posibilidades de retiro.</p>
+<p>Una cuenta distinta puede ayudarte, pero no tiene sentido pagar comisiones que se coman una reserva pequeña. No necesitas renunciar a todo medio de acceso: una emergencia puede ocurrir fuera de horario.</p>
+<p>Evita guardar toda la reserva en efectivo en casa o dejarla bloqueada en un producto que no permite retirar cuando la necesitas.</p>
+<h2 id="como-avanzar-sin-agotarte">Cómo avanzar sin agotarte</h2>
+<p>Vender algo que no usas o aceptar un trabajo adicional puede ayudar, <strong>si es seguro y compatible con tu salud y tus responsabilidades</strong>. No vendas una herramienta indispensable para producir ingresos por cumplir el paso más rápido.</p>
+<p>Usa una parte de los ingresos extraordinarios si ya cubriste necesidades próximas. No trates el aguinaldo como dinero sin compromisos.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Tu primer escalón.</strong> Escribe cuánto necesitas, para qué imprevisto te serviría y dónde lo guardarías. Si ahora no tienes margen, anota la acción de estabilización que va antes.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Los sabios tienen riquezas y lujos, pero los necios gastan todo lo que consiguen.</p>
+</blockquote>
+<p class="cita">Proverbios 21:20 (NTV)</p>
+</div>
+<h1 id="capitulo-5-menos-deudas-mas-decisiones-propias">Capítulo 5. Menos deudas, más decisiones propias</h1>
+<p>Una cuota compromete una parte del ingreso que todavía no has recibido. Muchas juntas pueden dejarte sin margen incluso cuando ganas bien.</p>
+<p>El método recomienda evitar nuevas deudas de consumo y no completar un ingreso insuficiente con tarjetas. No pretende juzgarte.</p>
+<h2 id="primero-el-inventario">Primero, el inventario</h2>
+<p>Anota todas las obligaciones: tarjetas, préstamos, compras en cuotas, rebajos por planilla, deudas familiares y compromisos en los que eres fiador.</p>
+<p>Para cada una, busca saldo, pago exigible, tasa, cargos, vencimiento y atrasos. Marca las cuotas ya rebajadas por planilla para no descontarlas de nuevo.</p>
+<p>El Centro de Información Crediticia (CIC) de la Superintendencia General de Entidades Financieras (SUGEF) reúne información reportada por entidades participantes. <strong>No reemplaza tu inventario</strong>: las deudas familiares o informales pueden no aparecer.</p>
+<p>Antes de firmar como fiador, averigua cuándo podrían cobrarte y qué bienes o ingresos comprometes. No es solo un favor.</p>
+<h2 id="lo-que-importa-no-es-solo-la-cuota">Lo que importa no es solo la cuota</h2>
+<p>Compara precio de contado, dinero que recibes, total que devolverás y fechas de pago. Incluye primas, seguros, comisiones y cualquier condición para conservar la tasa ofrecida.</p>
+<table>
+<thead>
+<tr>
+<th>Ejemplo hipotético</th>
+<th>Contado</th>
+<th>Suma de cuotas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Televisor</td>
+<td><span class="money">₡450 000</span></td>
+<td>24 × <span class="money">₡26 000</span> = <span class="money">₡624 000</span></td>
+</tr>
+<tr>
+<td>Celular con precio de contado distinto</td>
+<td><span class="money">₡405 000</span></td>
+<td>12 × <span class="money">₡37 500</span> = <span class="money">₡450 000</span></td>
+</tr>
+</tbody>
+</table>
+<p>Pagas <span class="money">₡174 000</span> extra por el televisor y <span class="money">₡45 000</span> por el celular. Comparar esos desembolsos <strong>no certifica la legalidad del contrato</strong>.</p>
+<p>Si te ofrecen «tasa cero», confirma si el precio final coincide con el de contado.</p>
+<p>Un préstamo hipotético de <span class="money">₡12</span> millones al 11 % nominal anual por siete años tendría una cuota de unos <span class="money">₡205 469</span> y un total de <span class="money">₡17,26</span> millones, sin otros costos. Que la cuota quepa no significa que convenga.</p>
+<h2 id="hay-topes-legales-pero-no-sustituyen-la-comparacion">Hay topes legales, pero no sustituyen la comparación</h2>
+<p>La reforma introducida por la Ley 9859 establece límites y reglas sobre cargos; también distingue microcrédito de otros créditos. Las tarjetas no se consideran microcrédito por tener un saldo pequeño<sup class="ref">[<a href="#fuente-12" aria-label="Fuente 12">12</a>]</sup>.</p>
+<p>El Banco Central de Costa Rica (BCCR) publica topes semestrales. En el anexo H aparecen los consultados para esta edición<sup class="ref">[<a href="#fuente-13" aria-label="Fuente 13">13</a>]</sup>. Confirma el aplicable a tu operación, su fecha y su moneda. No compares sin más una tasa mensual, una nominal anual y una efectiva anual.</p>
+<p>Si sospechas cobros indebidos, conserva contrato y estados de cuenta. Pide orientación al Ministerio de Economía, Industria y Comercio (MEIC) o al supervisor correspondiente; una posible usura puede requerir denuncia penal.</p>
+<h2 id="la-tarjeta-que-parece-no-bajar">La tarjeta que parece no bajar</h2>
+<p>Imagina un saldo de <span class="money">₡1 000 000</span>, con interés mensual del 2,5 %, equivalente a una tasa nominal anual de 30 %. No hay nuevas compras, seguros ni otros cargos.</p>
+<table>
+<thead>
+<tr>
+<th>Pago mensual</th>
+<th>Tiempo para terminar</th>
+<th>Intereses aproximados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="money">₡25 000</span></td>
+<td>No termina: solo paga intereses</td>
+<td>El saldo no baja</td>
+</tr>
+<tr>
+<td><span class="money">₡30 000</span></td>
+<td>73 meses</td>
+<td><span class="money">₡1 176 968</span></td>
+</tr>
+<tr>
+<td><span class="money">₡40 000</span></td>
+<td>40 meses</td>
+<td><span class="money">₡588 962</span></td>
+</tr>
+<tr>
+<td><span class="money">₡50 000</span></td>
+<td>29 meses</td>
+<td><span class="money">₡403 593</span></td>
+</tr>
+</tbody>
+</table>
+<p>La última cuota es menor que las anteriores. Una tarjeta real puede calcular intereses y pagos mínimos de otra manera; el ejemplo muestra por qué importa cuánto del pago reduce la deuda.</p>
+<h2 id="dos-formas-de-concentrar-el-esfuerzo">Dos formas de concentrar el esfuerzo</h2>
+<p>Si puedes cubrir los pagos exigibles, paga el mínimo en <strong>todas</strong> las deudas, incluida la que elegiste como objetivo. Después dirige el extra a una sola.</p>
+<p><strong>Bola de nieve:</strong> empiezas por el saldo más pequeño. Terminar una cuenta puede ayudarte a sostener el esfuerzo. La investigación citada en el método encuentra una asociación entre cerrar cuentas y completar la salida de deudas; no demuestra que esa estrategia sea superior para toda persona<sup class="ref">[<a href="#fuente-14" aria-label="Fuente 14">14</a>]</sup>.</p>
+<p><strong>Avalancha:</strong> empiezas por la tasa más alta. Con el mismo dinero disponible, sin penalizaciones y en condiciones comparables, prioriza reducir el costo de los intereses. La diferencia frente a la bola de nieve puede ser importante.</p>
+<p>Elige una estrategia que entiendas y puedas mantener. Cuando canceles una deuda, suma el pago liberado a la siguiente, si tu situación lo permite.</p>
+<p>Los atrasos con consecuencias legales, las obligaciones alimentarias o el riesgo de perder vivienda o una herramienta de trabajo necesitan una evaluación distinta. No los ordenes automáticamente solo por saldo.</p>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Andrea hizo esta lista:</p>
+<table>
+<thead>
+<tr>
+<th>Deuda</th>
+<th>Saldo</th>
+<th>Pago mensual</th>
+<th>Tasa nominal anual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tarjeta C</td>
+<td><span class="money">₡350 000</span></td>
+<td><span class="money">₡18 000</span></td>
+<td>30 %</td>
+</tr>
+<tr>
+<td>Tarjeta B</td>
+<td><span class="money">₡900 000</span></td>
+<td><span class="money">₡40 000</span></td>
+<td>30 %</td>
+</tr>
+<tr>
+<td>Tarjeta A</td>
+<td><span class="money">₡1 600 000</span></td>
+<td><span class="money">₡64 000</span></td>
+<td>30 %</td>
+</tr>
+<tr>
+<td>Boda</td>
+<td><span class="money">₡2 400 000</span></td>
+<td><span class="money">₡75 000</span></td>
+<td>18 %</td>
+</tr>
+<tr>
+<td>Carro</td>
+<td><span class="money">₡7 800 000</span></td>
+<td><span class="money">₡205 469</span></td>
+<td>11 %</td>
+</tr>
+</tbody>
+</table>
+<p>Los pagos sumaban <span class="money">₡402 469</span>. Con cambios de gasto e ingreso consiguió <span class="money">₡250 000</span> adicionales y mantuvo un presupuesto total de <span class="money">₡652 469</span> para estas deudas.</p>
+<p>En la simulación de bola de nieve, sin cargos adicionales, con tasas mensuales iguales a la nominal anual dividida entre doce y trasladando pagos liberados y sobrantes el mismo mes, termina en el mes 23. Los intereses rondan <span class="money">₡1,87</span> millones.</p>
+<p>Ese es el resultado de <strong>esos supuestos</strong>, no una promesa para quien no dispone de <span class="money">₡250 000</span> extra.</p>
+</div>
+<h2 id="si-no-puedes-pagar">Si no puedes pagar</h2>
+<p>Si ni siquiera cubres los mínimos, prioriza necesidades indispensables y obligaciones legales. Reúne documentos y busca un arreglo escrito; compara el costo total, porque una cuota menor puede alargar y encarecer la deuda.</p>
+<p>No ignores notificaciones judiciales. El Código de Trabajo protege parte del salario frente al embargo, con reglas especiales para pensiones alimentarias<sup class="ref">[<a href="#fuente-7" aria-label="Fuente 7">7</a>]</sup>. No supongas que la protección se aplica igual a ingresos independientes, cuentas o bienes.</p>
+<p>Consulta la orientación jurídica disponible en instituciones públicas o consultorios universitarios y confirma sus requisitos.</p>
+<p>Si hay amenazas, ve al capítulo 11: <strong>tu seguridad no se resuelve simplemente pagando primero a quien más intimida</strong>.</p>
+<h2 id="consolidar-no-borra-lo-que-debes">Consolidar no borra lo que debes</h2>
+<p>Una consolidación cambia tus deudas por una nueva obligación. No siempre es una estafa, pero una cuota menor puede costar más. Si tu plan es inviable, busca orientación independiente y compara tasa, moneda, plazo, costo total, seguros, comisiones y garantías.</p>
+<p>El método prefiere salir sin nueva deuda. No comprometas tu vivienda sin comprender lo que podrías perder ni aceptes una cuota que no puedes sostener.</p>
+<h2 id="dejar-de-usar-no-es-cancelar">Dejar de usar no es cancelar</h2>
+<p>Romper una tarjeta no cancela la cuenta ni elimina el saldo. Para cerrarla, revisa cargos, traslada pagos automáticos y pide confirmación formal. No te endeudes para demostrar responsabilidad: consulta los requisitos de financiamiento de cada entidad.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Hoy.</strong> Llena el anexo C. Si puedes cubrir los pagos, marca una deuda objetivo y el extra real disponible. Si no puedes, escribe a quién solicitarás orientación o un arreglo.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Así como el rico gobierna al pobre, el que pide prestado es sirviente del que presta.</p>
+</blockquote>
+<p class="cita">Proverbios 22:7 (NTV)</p>
+</div>
+<h1 id="capitulo-6-una-reserva-que-de-verdad-puedas-usar">Capítulo 6. Una reserva que de verdad puedas usar</h1>
+<p>El fondo de emergencia protege tiempo y opciones cuando ocurre un problema. No tiene que producir el mayor rendimiento posible.</p>
+<h2 id="paso-3-ampliar-el-colchon">Paso 3: ampliar el colchón</h2>
+<p>Una referencia frecuente es reunir de <strong>tres a seis meses de gastos esenciales</strong>. Con ingresos muy variables o una sola fuente de sustento, puedes necesitar más; seis a doce meses es una meta posible, no una obligación inmediata.</p>
+<p>Calcula con tus gastos, no con el salario de otra persona. Si necesitas <span class="money">₡350 000</span> mensuales para sostener lo indispensable, tres meses son <span class="money">₡1 050 000</span>.</p>
+<p>La meta depende de estabilidad laboral, salud, personas a cargo y apoyos realmente disponibles. Llegar a un mes sigue siendo útil aunque seis parezcan lejanos.</p>
+<p>No es necesario dejar la cuenta en cero para acelerar una deuda ni esperar a completar doce meses para resolver cualquier otra necesidad.</p>
+<h2 id="disponible-no-significa-se-puede-vender-algun-dia">Disponible no significa «se puede vender algún día»</h2>
+<p>Mantén una parte accesible de inmediato, también fuera de horario. Si escalonas otra parte en depósitos a plazo, comprueba cuándo vence y si puede retirarse antes.</p>
+<p>Un producto que tarda varios días en devolver dinero no debe contener toda la reserva. Tampoco un fondo cuyo precio puede caer cuando necesitas salir.</p>
+<p>Los fondos de mercado de dinero pueden tener rescates relativamente rápidos, pero sus condiciones varían y no son depósitos garantizados. No los trates como idénticos a una cuenta de ahorro.</p>
+<h2 id="que-cubre-la-garantia-de-depositos">Qué cubre la garantía de depósitos</h2>
+<p>El BCCR informa una cobertura de hasta <strong><span class="money">₡6</span> millones de principal por persona y por entidad contribuyente</strong>, con independencia de la moneda. El límite no se aplica a cada cuenta por separado y la cobertura no incluye los intereses<sup class="ref">[<a href="#fuente-15" aria-label="Fuente 15">15</a>]</sup>.</p>
+<p>Verifica entidad, titular y producto elegible. El propio BCCR excluye al BANHVI y a las mutuales de ahorro y préstamo de este fondo; eso no resuelve por sí solo qué otros respaldos puedan tener.</p>
+<p>Un fondo de inversión no se vuelve un depósito cubierto porque lo ofrezca un grupo que también tiene un banco.</p>
+<p><strong>Garantía y liquidez son distintas.</strong> Recuperar dinero tras el cierre de una entidad puede requerir un proceso. Considera mantener más de una vía de acceso si una interrupción te dejaría sin recursos.</p>
+<h2 id="guarda-segun-la-moneda-de-tus-gastos">Guarda según la moneda de tus gastos</h2>
+<p>Si pagas comida y alquiler en colones, necesitas una reserva suficiente en colones. Si tienes obligaciones en otra moneda, considera esa parte por separado.</p>
+<p>Comprar dólares no garantiza ganar dinero medido en colones. El tipo de cambio puede moverse en las dos direcciones y hay diferencia entre el precio de compra y el de venta.</p>
+<h2 id="cuando-usarla">Cuándo usarla</h2>
+<p>Pregúntate si el gasto es necesario, urgente y no puede resolverse razonablemente con el presupuesto corriente.</p>
+<p>Una emergencia médica no debe esperar porque no encaja en una definición perfecta. Si tuviste que usar la reserva para algo previsible que no alcanzaste a ahorrar, atiende la necesidad y después ajusta el plan.</p>
+<p>No te castigues por usarla. Para eso la construiste.</p>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Se dañó el horno de Sofía en una semana de pedidos. Había empezado a separar una reserva del negocio, distinta de la comida y el alquiler de la casa.</p>
+<p>Pudo usarla para una reparación y cumplir parte de los encargos. Después revisó cuánto debía apartar para mantenimiento. No evitó todo el problema; evitó que el problema se llevara también el presupuesto familiar.</p>
+</div>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Tu reserva.</strong> Escribe cuánto cuestan tus gastos esenciales de un mes, cuál es tu siguiente escalón y qué parte podrías retirar hoy sin vender una inversión ni pagar una penalización.</p>
+</div>
+<div class="caja reflexion">
+<p class="etiqueta">Reflexión opcional</p>
+<p><strong>Lectura bíblica opcional: Proverbios 6:6-8.</strong> La imagen de preparar provisiones invita a anticiparse. No convierte en falta moral el no poder ahorrar cuando el ingreso es insuficiente.</p>
+</div>
+<h1 id="capitulo-7-preparar-la-vejez-sin-perseguir-promesas">Capítulo 7. Preparar la vejez sin perseguir promesas</h1>
+<p>Invertir no empieza por preguntar qué producto «está pagando más». Empieza por decidir <strong>para qué necesitas la plata y cuándo la usarás</strong>.</p>
+<p>Dinero para el próximo alquiler, para estudiar dentro de dos años y para un retiro dentro de treinta años no debe tratarse igual.</p>
+<h2 id="paso-4-revisar-lo-que-tienes-y-lo-que-falta">Paso 4: revisar lo que tienes y lo que falta</h2>
+<p>Consulta tu pensión básica, el ROP si te corresponde y cualquier ahorro complementario. Revisa aportes, beneficiarios, comisiones y proyecciones. Una proyección no garantiza un resultado.</p>
+<p>Este método mantiene como referencia avanzar hacia un ahorro adicional de <strong>10 % del ingreso bruto para asalariados</strong>. Para quienes trabajan por su cuenta, propone aspirar a <strong>15 % del ingreso personal después de costos y obligaciones del negocio</strong>, no de las ventas.</p>
+<p>Son metas orientativas, no una fórmula que asegure una pensión suficiente. La edad de inicio, los años de aporte, el rendimiento, los costos y las necesidades futuras cambian mucho el resultado.</p>
+<p>Si hoy solo puedes aportar un monto menor sin desprotegerte, trabaja con ese monto y revisa cómo aumentarlo. Nunca suspendas cotizaciones obligatorias para seguir un porcentaje del libro.</p>
+<p>Si estás cerca del retiro, no intentes compensar años sin ahorro con inversiones extremas. Necesitas revisar ingresos previstos, gastos, deudas y riesgos con especial cuidado.</p>
+<h2 id="ahorro-e-inversion-no-hacen-el-mismo-trabajo">Ahorro e inversión no hacen el mismo trabajo</h2>
+<p><strong>Ahorrar</strong> es separar recursos para usarlos después. <strong>Invertir</strong> es colocarlos en algo con la expectativa de obtener un rendimiento, aceptando riesgos.</p>
+<p>Una inversión puede perder valor, tardar en venderse o devolver menos de lo previsto. Que una entidad esté supervisada no elimina esos riesgos.</p>
+<p>Antes de contratar, responde:</p>
+<ol>
+<li>¿Cuándo necesitaré el dinero?</li>
+<li>¿Cuánto podría perder o dejar inmovilizado sin afectar necesidades?</li>
+<li>¿Entiendo de dónde sale el rendimiento?</li>
+<li>¿Cuánto cuestan todas las comisiones e impuestos?</li>
+<li>¿Quién supervisa exactamente esta actividad y este producto?</li>
+</ol>
+<h2 id="el-tiempo-ayuda-pero-no-promete">El tiempo ayuda, pero no promete</h2>
+<p>Esta simulación supone aportes al final de cada mes y un rendimiento real efectivo de 4 % anual: <strong>por encima de la inflación y después de costos e impuestos</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Aporte mensual en colones de hoy</th>
+<th>En 20 años</th>
+<th>En 30 años</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="money">₡5000</span></td>
+<td><span class="money">₡1,82</span> millones</td>
+<td><span class="money">₡3,43</span> millones</td>
+</tr>
+<tr>
+<td><span class="money">₡20 000</span></td>
+<td><span class="money">₡7,28</span> millones</td>
+<td><span class="money">₡13,71</span> millones</td>
+</tr>
+<tr>
+<td><span class="money">₡50 000</span></td>
+<td><span class="money">₡18,19</span> millones</td>
+<td><span class="money">₡34,26</span> millones</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Importante:</strong> se supone que el aporte conserva su poder de compra. En la práctica, el monto nominal tendría que ajustarse con la inflación. Aportar siempre los mismos <span class="money">₡5000</span> nominales no equivale a esta simulación.</p>
+<p>El 4 % no es una rentabilidad ofrecida ni garantizada. El resultado real puede ser menor, y puede haber periodos con pérdidas. La tabla muestra cómo funciona el cálculo, no cuánto debes esperar ganar.</p>
+<p>Empezar antes ayuda; aportar más también. Si no empezaste antes, tu decisión útil es qué puedes hacer ahora.</p>
+<h2 id="un-mapa-sencillo-de-opciones">Un mapa sencillo de opciones</h2>
+<table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Opciones para investigar</th>
+<th>Qué debes revisar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dinero de uso próximo</td>
+<td>Cuenta o depósito compatible con la fecha de uso</td>
+<td>Disponibilidad, costos, moneda y cobertura aplicable.</td>
+</tr>
+<tr>
+<td>Meta con fecha conocida</td>
+<td>Depósitos o inversiones cuyo plazo y riesgo se ajusten</td>
+<td>Vencimiento, posibilidad de pérdida y costo de salir antes.</td>
+</tr>
+<tr>
+<td>Retiro de largo plazo</td>
+<td>Pensión voluntaria o inversiones diversificadas</td>
+<td>Comisiones, impuestos, restricciones y capacidad de soportar pérdidas.</td>
+</tr>
+</tbody>
+</table>
+<p>Un certificado de depósito a plazo, o CDP, compromete el dinero por un tiempo. No supongas que siempre puedes retirarlo anticipadamente.</p>
+<p>Un fondo de inversión reúne dinero de varias personas para comprar activos. Algunos permiten rescates; en otros necesitas vender la participación a otra persona. Lee el prospecto: explica riesgos, costos y condiciones.</p>
+<p>La rentabilidad anunciada puede ser antes de impuestos. Hacienda publica una tarifa general de 15 % para rentas de capital, pero existen excepciones y reglas transitorias: confirma la aplicable al producto<sup class="ref">[<a href="#fuente-16" aria-label="Fuente 16">16</a>]</sup>.</p>
+<h2 id="pension-voluntaria-una-opcion-para-comparar">Pensión voluntaria: una opción para comparar</h2>
+<p>La SUPEN explica que el aporte se decide según capacidad de ahorro. En el caso asalariado descrito por esa institución, el beneficio de exención puede aplicarse hasta el 10 % del ingreso bruto mensual; requiere el trámite correspondiente por planilla<sup class="ref">[<a href="#fuente-17" aria-label="Fuente 17">17</a>]</sup>.</p>
+<p>No todas las personas obtienen el mismo ahorro tributario. Si no pagas impuesto sobre la renta, no vas a ahorrar ese impuesto por contratar un plan.</p>
+<p>Antes de aportar, pregunta por comisiones, condiciones para pensionarte y consecuencias de retirar antes. La SUPEN indica para retiro anticipado al menos 66 meses de cotización y devolución de incentivos fiscales; confirma la aplicación a tu contrato<sup class="ref">[<a href="#fuente-17" aria-label="Fuente 17">17</a>]</sup>.</p>
+<p><strong>No uses una pensión voluntaria como si fuera el fondo de emergencia.</strong></p>
+<h2 id="un-fondo-indexado-no-es-una-cuenta-de-ahorro">Un fondo indexado no es una cuenta de ahorro</h2>
+<p>Un fondo indexado busca seguir un índice. El S&amp;P 500 agrupa grandes empresas de Estados Unidos. Invertir en muchas empresas reduce la dependencia de una sola, pero no elimina caídas del mercado ni diversifica por completo entre países y tipos de activos.</p>
+<p>Puede ser una alternativa de largo plazo para una persona que entiende sus riesgos. No es una obligación del método ni una buena solución para dinero que necesitas pronto.</p>
+<p>No supongas que cualquier banco lo ofrece o que cualquier producto con «Estados Unidos» en el nombre sigue ese índice. En Costa Rica, verifica el producto, su administradora y su prospecto en el registro de la Superintendencia General de Valores (SUGEVAL)<sup class="ref">[<a href="#fuente-18" aria-label="Fuente 18">18</a>]</sup>.</p>
+<p>Pregunta por la comisión que se cobra hoy y la máxima permitida, los costos de los fondos subyacentes, el cambio de moneda y las reglas de salida. «Pasivo» no significa automáticamente «barato».</p>
+<p>Si consideras un intermediario extranjero, lee primero el anexo H. Hay reglas de custodia, impuestos y sucesión que no se resuelven solo abriendo una cuenta.</p>
+<h2 id="una-rutina-sostenible">Una rutina sostenible</h2>
+<p>Compara antes de contratar. Automatiza solo un monto que cabe en tu presupuesto y cuya fecha no te deje sin dinero para vivir.</p>
+<p>Revisa periódicamente y cuando cambien tu trabajo, salud o responsabilidades. No hace falta mirar precios todos los días; tampoco se trata de ignorar una necesidad real de dinero o un producto que dejó de ajustarse a tu plan.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Una meta, cinco preguntas.</strong> Elige una meta futura y responde las cinco preguntas del capítulo. Si no puedes explicar un producto con palabras sencillas, todavía no entregues dinero.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Coloca tus inversiones en varios lugares, porque no sabes qué riesgos podría haber más adelante.</p>
+</blockquote>
+<p class="cita">Eclesiastés 11:2 (NTV)</p>
+</div>
+<h1 id="capitulo-8-vivienda-sin-perder-el-sueno">Capítulo 8. Vivienda sin perder el sueño</h1>
+<p>Tener una vivienda segura importa. Ser propietario es una de las formas de conseguirla, no una condición para haber «triunfado».</p>
+<h2 id="paso-5-alquilar-o-comprar">Paso 5: alquilar o comprar</h2>
+<p>Alquilar paga el uso de un lugar donde vivir. Puede ser una decisión conveniente por trabajo, costos, movilidad o etapa de vida.</p>
+<p>Comprar agrega responsabilidades: mantenimiento, impuestos, seguros y gastos de formalización, además de la cuota. Parte de esos costos puede reflejarse también en el alquiler, según el contrato.</p>
+<p>Compara escenarios completos. No decidas solo porque la cuota se parece al alquiler ni porque alguien dijo que «alquilar es botar la plata».</p>
+<h2 id="criterios-de-una-hipoteca-prudente">Criterios de una hipoteca prudente</h2>
+<p>El método usa referencias conservadoras:</p>
+<ul>
+<li>Procurar que la cuota, incluidos seguros obligatorios, no pase del <strong>25 % del ingreso neto estable del hogar</strong>.</li>
+<li>Preferir un plazo de <strong>15 años</strong>; valorar hasta <strong>20 años</strong> si sigue siendo sostenible.</li>
+<li>Endeudarse en la moneda de los ingresos con que se pagará.</li>
+<li>Ahorrar una prima; como orientación, buscar 20 % del precio y evitar bajar de 10 % sin evaluar cuidadosamente el riesgo.</li>
+<li>Mantener aparte gastos de formalización y una reserva.</li>
+<li>Si la tasa es variable, comprobar qué pasaría si subiera <strong>tres puntos porcentuales</strong>.</li>
+</ul>
+<p>Estos porcentajes no son leyes ni requisitos universales de las entidades. Cumplirlos tampoco garantiza que una compra sea adecuada.</p>
+<p>Mira cuánto dinero queda después de <strong>todos</strong> los costos de vivienda. Si no alcanza para salud, comida, cuidados y demás obligaciones, la casa no cabe aunque el porcentaje parezca aceptable.</p>
+<p>Si ya tienes una hipoteca que no cumple estas referencias, no significa que debas vender de inmediato. Revisa alternativas y costos con información de tu contrato.</p>
+<h2 id="una-casa-que-no-cabe-en-la-cuota">Una casa que no cabe en la cuota</h2>
+<p>Si el ingreso neto estable del hogar es <span class="money">₡1 200 000</span>, el 25 % son <span class="money">₡300 000</span>. Esa referencia debe incluir los seguros asociados a la cuota.</p>
+<p>Observa un préstamo hipotético de <span class="money">₡50</span> millones al 9 % nominal anual fijo, sin seguros ni comisiones:</p>
+<table>
+<thead>
+<tr>
+<th>Plazo</th>
+<th>Cuota mensual aproximada</th>
+<th>Intereses totales aproximados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15 años</td>
+<td><span class="money">₡507 133</span></td>
+<td><span class="money">₡41,28</span> millones</td>
+</tr>
+<tr>
+<td>20 años</td>
+<td><span class="money">₡449 863</span></td>
+<td><span class="money">₡57,97</span> millones</td>
+</tr>
+<tr>
+<td>30 años</td>
+<td><span class="money">₡402 311</span></td>
+<td><span class="money">₡94,83</span> millones</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ninguna de esas cuotas cabe en los <span class="money">₡300 000</span> del ejemplo anterior.</strong> Extender el plazo baja la cuota, pero no necesariamente vuelve prudente la compra.</p>
+<p>Puedes necesitar otro precio, una prima mayor, más tiempo o seguir alquilando. No hay que forzar una hipoteca para completar un paso.</p>
+<h2 id="moneda-y-tasa-dos-riesgos-diferentes">Moneda y tasa: dos riesgos diferentes</h2>
+<p><strong>Ejemplo de moneda, no dato histórico:</strong> una cuota de <span class="money">US$500</span> cuesta <span class="money">₡250 000</span> si compras dólares a <span class="money">₡500</span>, y <span class="money">₡325 000</span> si los compras a <span class="money">₡650</span>. Son <span class="money">₡75 000</span> más sin que cambie la cuota en dólares.</p>
+<p><strong>Ejemplo de tasa:</strong> en el préstamo anterior, una tasa inicial de 12 % en lugar de 9 % daría una cuota aproximada de <span class="money">₡600 084</span> a quince años. Esta es una comparación al inicio. Si la tasa cambia después, la cuota se recalcula con el saldo y el plazo restantes.</p>
+<p>Pregunta por la tasa después de cualquier promoción, la referencia utilizada, el margen, la frecuencia de revisión y si hay un piso mínimo.</p>
+<h2 id="planes-del-invu">Planes del INVU</h2>
+<p>El Instituto Nacional de Vivienda y Urbanismo tiene planes con una etapa de ahorro y otra de préstamo. La página consultada describe ahorro de dos a diez años y financiamiento desde 7 % anual fijo sobre saldos<sup class="ref">[<a href="#fuente-19" aria-label="Fuente 19">19</a>]</sup>.</p>
+<p>La facilidad para iniciar el ahorro no equivale a que todos los requisitos del préstamo estén resueltos. Pide condiciones completas, plazo total, costos, garantías y qué ocurre si te atrasas o decides salir.</p>
+<p>El INVU permite venta o traspaso de contratos, incluso por cuenta propia. Si interviene un comisionista, verifica que esté autorizado. En cualquier modalidad, confirma directamente el estado del plan antes de pagar.</p>
+<h2 id="bono-de-vivienda">Bono de vivienda</h2>
+<p>El Bono Familiar de Vivienda es una ayuda estatal sujeta a requisitos. Consulta en el Banco Hipotecario de la Vivienda (BANHVI) o una entidad autorizada; no pagues a quien te prometa aprobación segura.</p>
+<p>La tabla general consultada para 2026 contempla ingresos familiares brutos de hasta <span class="money">₡1 940 076</span> y un bono máximo aproximado de <span class="money">₡9 700 000</span>, según ingreso<sup class="ref">[<a href="#fuente-20" aria-label="Fuente 20">20</a>]</sup>. Hay condiciones y modalidades que esa tabla no resume. Estar dentro del rango no garantiza aprobación ni disponibilidad inmediata.</p>
+<p>Pregunta también por las limitaciones que tendrá la propiedad y qué autorizaciones necesitarías para vender, alquilar o hipotecar. No firmes suponiendo que una casa subsidiada puede usarse de cualquier manera.</p>
+<h2 id="antes-de-firmar">Antes de firmar</h2>
+<p>Solicita un desglose de impuesto de traspaso, timbres y derechos, honorarios, avalúo, comisiones y seguros. Confirma quién paga cada rubro.</p>
+<p>Pide por escrito qué ocurre si adelantas capital, cancelas el crédito, cambias de moneda o te atrasas. Lleva el contrato a revisión si no entiendes una condición.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Tu decisión de vivienda.</strong> Compara dos escenarios: seguir donde estás y la alternativa que estás considerando. Incluye costos mensuales, gastos iniciales y dinero que quedaría disponible.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Antes de construir tu casa, haz tus planes y prepara los campos.</p>
+</blockquote>
+<p class="cita">Proverbios 24:27 (NTV)</p>
+</div>
+<h1 id="capitulo-9-patrimonio-tranquilidad-y-generosidad">Capítulo 9. Patrimonio, tranquilidad y generosidad</h1>
+<p>Tu patrimonio es lo que tienes menos lo que debes. Pero no todo patrimonio sirve para pagar una emergencia: una casa no se convierte en efectivo de inmediato.</p>
+<h2 id="paso-6-si-tienes-hipoteca">Paso 6: si tienes hipoteca</h2>
+<p>Un abono extraordinario aplicado al capital puede reducir intereses. Antes de hacerlo, confirma comisiones, reglas y si el efecto será reducir plazo, cuota o ambos.</p>
+<p>No entregues toda tu reserva por el deseo de terminar antes. Considera también tus necesidades próximas y el ahorro para el retiro.</p>
+<p>Para una hipoteca ya existente de <span class="money">₡50</span> millones a treinta años, al 9 % nominal anual fijo, el efecto hipotético sería:</p>
+<table>
+<thead>
+<tr>
+<th>Abono extra mensual</th>
+<th>Tiempo total aproximado</th>
+<th>Intereses ahorrados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninguno</td>
+<td>30 años</td>
+<td>—</td>
+</tr>
+<tr>
+<td><span class="money">₡50 000</span></td>
+<td>19 años y 9 meses</td>
+<td><span class="money">₡37,90</span> millones</td>
+</tr>
+<tr>
+<td><span class="money">₡100 000</span></td>
+<td>15 años y 4 meses</td>
+<td><span class="money">₡52,56</span> millones</td>
+</tr>
+<tr>
+<td><span class="money">₡150 000</span></td>
+<td>12 años y 9 meses</td>
+<td><span class="money">₡60,85</span> millones</td>
+</tr>
+</tbody>
+</table>
+<p>Se usa la cuota base sin redondear, pagos al final del mes y última cuota parcial, sin penalizaciones ni otros cargos. <strong>El ejemplo no recomienda contratar un plazo de treinta años.</strong></p>
+<h2 id="si-no-tienes-hipoteca">Si no tienes hipoteca</h2>
+<p>No necesitas comprar una casa para avanzar al último paso. Puedes fortalecer tu reserva, preparar el retiro, estudiar o ahorrar para otra meta.</p>
+<p>También cuenta proteger herramientas de trabajo, resolver una deuda pendiente o mejorar una vivienda que no es de tu propiedad mediante un acuerdo claro con quien corresponda.</p>
+<h2 id="paso-7-sostener-lo-que-construyes">Paso 7: sostener lo que construyes</h2>
+<p>Una vez que recuperes margen, no hace falta convertir todo aumento de ingreso en una nueva obligación.</p>
+<p>Revisa una vez al año:</p>
+<ul>
+<li>si las metas siguen teniendo sentido;</li>
+<li>si tus reservas cubren la situación actual;</li>
+<li>si los beneficiarios y documentos están actualizados;</li>
+<li>si puedes aumentar ahorro, descanso o disfrute sin volver a vivir al límite.</li>
+</ul>
+<p>Si estás cerca del retiro o ya te pensionaste, prioriza que el dinero dure y esté disponible cuando lo necesites. Evita riesgos que no puedes reparar con años de nuevos ingresos.</p>
+<h2 id="ayudar-sin-desprotegerte">Ayudar sin desprotegerte</h2>
+<p>La ayuda a familiares puede ser parte estable del presupuesto, no una sorpresa mensual. Conversa sobre montos, duración y qué sí puedes sostener.</p>
+<p>Dar puede ser dinero, tiempo, conocimiento o acompañamiento. No existe un monto mínimo para ser generoso.</p>
+<p>No te endeudes ni pongas en riesgo la alimentación, la salud o la vivienda para cumplir expectativas ajenas.</p>
+<h2 id="dejar-orden-tambien-es-cuidar">Dejar orden también es cuidar</h2>
+<p>Consulta con un profesional sobre testamento, beneficiarios y documentos que correspondan a tu situación. Un testamento puede ayudar a expresar tu voluntad, pero no elimina automáticamente trámites, deudas o conflictos.</p>
+<p>Deja una lista de instituciones y contactos para que tus personas de confianza sepan dónde buscar información. Mantén protegidas las claves.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Una decisión de cuidado.</strong> Elige actualizar un beneficiario, ordenar documentos, revisar una cobertura o acordar una ayuda familiar sostenible.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Cada uno debe decidir en su corazón cuánto dar; y no den de mala gana ni bajo presión, «porque Dios ama a la persona que da con alegría».</p>
+</blockquote>
+<p class="cita">2 Corintios 9:7 (NTV)</p>
+</div>
+<h1 id="capitulo-10-trabajar-por-tu-cuenta-sin-apostar-todo">Capítulo 10. Trabajar por tu cuenta sin apostar todo</h1>
+<p>Emprender puede ser una fuente de sustento, una opción elegida o una necesidad. No toda persona puede esperar a tener un año de reserva para empezar a vender un servicio.</p>
+<p>La distinción importante es esta: <strong>probar algo pequeño para generar ingresos no es lo mismo que comprometer el patrimonio en un negocio grande que no conoces</strong>.</p>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Luis tiene ahorros y un amigo le propone abrir una soda. Antes de firmar un alquiler, Luis revisa costos, permisos y demanda. Descubre que no sabe cuántas ventas necesitaría para pagarse a sí mismo.</p>
+<p>Decide no comprometer todo el dinero. Una oportunidad que no puedes explicar todavía no es un plan.</p>
+</div>
+<h2 id="haz-una-prueba-pequena">Haz una prueba pequeña</h2>
+<p>Antes de comprar equipo caro o asumir un alquiler, averigua si hay clientes dispuestos a pagar. Cuando sea posible y esté permitido para tu actividad, empieza con encargos, una muestra pequeña o un servicio que ya sabes hacer.</p>
+<p>Pon un límite a lo que puedes arriesgar sin afectar vivienda, comida, salud y obligaciones. Un negocio no se vuelve seguro porque lo recomiende una amistad.</p>
+<h2 id="facturar-no-es-ganar">Facturar no es ganar</h2>
+<p>Si cobras <span class="money">₡100 000</span> y producir lo vendido cuesta <span class="money">₡60 000</span>, quedan <span class="money">₡40 000</span> <strong>antes</strong> de otros gastos, impuestos y tu remuneración.</p>
+<p>Incluye materiales, transporte, comisiones de cobro, electricidad, mantenimiento, devoluciones y tiempo. Si trabajas gratis sin darte cuenta, el precio puede no sostener el negocio.</p>
+<p>Pregunta también cuándo cobras y cuándo debes pagar. Tener ventas pendientes de cobro no significa tener efectivo para comprar materiales.</p>
+<h2 id="separa-la-casa-del-negocio">Separa la casa del negocio</h2>
+<p>Puede ser con cuentas distintas o con un registro claro si al inicio no puedes abrir otra cuenta sin costos.</p>
+<p>Define un retiro personal prudente. Un monto estable puede facilitar el presupuesto, pero solo si el negocio puede sostenerlo; no inventes un «salario fijo» que lo deje sin recursos.</p>
+<p>Aparta obligaciones fiscales y de seguridad social según las reglas aplicables, no un porcentaje elegido al azar. Guarda otra reserva para semanas flojas y mantenimiento.</p>
+<p>Si eres persona física, separar cuentas ayuda a ordenar, pero <strong>no crea por sí solo una separación legal de responsabilidad</strong>.</p>
+<h2 id="preguntas-antes-de-crecer">Preguntas antes de crecer</h2>
+<ol>
+<li>¿Quién compra y qué evidencia tengo de que seguirá comprando?</li>
+<li>¿Queda ganancia después de todos los costos y de remunerar mi trabajo?</li>
+<li>¿Cuánto puedo perder sin afectar necesidades básicas?</li>
+<li>¿Cuándo entra y cuándo sale el efectivo?</li>
+<li>¿Qué pasa si vendo menos de lo esperado?</li>
+<li>¿Qué permisos y obligaciones debo cumplir?</li>
+<li>Si hay socios, ¿están por escrito aportes, responsabilidades y salida?</li>
+</ol>
+<p>Este método favorece crecer con recursos propios y pruebas pequeñas. Eso no convierte en malo a todo negocio que usa crédito: el financiamiento necesita una evaluación más profunda que «la cuota cabe».</p>
+<p>No uses dinero de pensión, vivienda o emergencia en una expansión cuyo riesgo no puedes sostener.</p>
+<h2 id="formalizar-segun-la-actividad">Formalizar según la actividad</h2>
+<p>Consulta qué inscripción y comprobantes tributarios corresponden; qué modalidad de aseguramiento aplica ante la CCSS; y si necesitas patente municipal o permiso sanitario.</p>
+<p>Si contratas personal, revisa obligaciones laborales, aseguramiento ante la CCSS y riesgos del trabajo. El Código de Trabajo establece obligaciones patronales de protección frente a esos riesgos<sup class="ref">[<a href="#fuente-7" aria-label="Fuente 7">7</a>]</sup>.</p>
+<p>No uses «negocio pequeño» como sinónimo de «sin obligaciones». Tampoco supongas que todo trámite es igual para todas las actividades.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Una venta real.</strong> Elige un producto o servicio. Anota precio, costos, tiempo y cuánto queda. Luego calcula qué cambiaría si vendieras menos o cobraras más tarde.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>Los planes fracasan por falta de consejo; muchos consejeros traen éxito.</p>
+</blockquote>
+<p class="cita">Proverbios 15:22 (NTV)</p>
+</div>
+<h1 id="capitulo-11-que-la-urgencia-no-decida-por-ti">Capítulo 11. Que la urgencia no decida por ti</h1>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Karla recibe una invitación a un «club» que promete pagar 5 % al mes. La presenta una persona en quien confía. Hay capturas de pantalla, testimonios y una fecha límite.</p>
+<p>Esta vez Karla no transfiere de inmediato. Pide documentos y pregunta de dónde sale el rendimiento. La respuesta es otra invitación a entrar rápido.</p>
+</div>
+<p>Una estafa puede aprovechar la confianza, la necesidad o el deseo de mejorar. Ser víctima no demuestra que seas tonto. Lo importante es reconocer señales y actuar pronto.</p>
+<h2 id="una-cifra-pequena-puede-esconder-una-promesa-enorme">Una cifra pequeña puede esconder una promesa enorme</h2>
+<p>Un 5 % mensual, reinvertido cada mes durante un año, equivale a un crecimiento de aproximadamente <strong>79,6 %</strong>.</p>
+<p>Ese cálculo no prueba por sí solo una estafa, pero una promesa de ganancias tan altas y seguras exige mucha más evidencia que testimonios.</p>
+<p>Pregunta qué actividad genera el dinero, qué riesgos existen, quién revisa las cuentas y cómo puedes retirar. Si solo explican cómo invitar gente, no han explicado una inversión.</p>
+<h2 id="tres-modelos-que-debes-distinguir">Tres modelos que debes distinguir</h2>
+<p><strong>Ponzi:</strong> los pagos presentados como rendimientos se sostienen con dinero de nuevos participantes, en vez de las ganancias que supuestamente los producen. Los primeros pagos no demuestran que el negocio sea sostenible.</p>
+<p><strong>Pirámide:</strong> el incentivo principal depende de incorporar personas que pagan por entrar. Necesita una expansión que no puede continuar indefinidamente.</p>
+<p><strong>Multinivel:</strong> no es automáticamente sinónimo de estafa. Si te ofrecen uno, exige información sobre clientes reales, ingresos de todos los participantes —incluidos quienes no ganan— y gastos para participar. Comisiones brutas no son ganancias netas.</p>
+<h2 id="la-cuenta-de-los-ocho-invitados">La cuenta de los ocho invitados</h2>
+<p>Supón que una persona inicia el sistema y cada participante recluta ocho. Llamemos nivel 0 a la persona fundadora.</p>
+<p>El nivel 1 necesita ocho personas nuevas; el nivel 2, 64; el nivel 3, 512. Para el nivel 7 harían falta <strong>2 097 152 personas nuevas</strong>. Sumando desde el fundador hasta ese nivel, serían <strong>2 396 745</strong>.</p>
+<p>En el siguiente nivel, el total acumulado subiría a <strong>19 173 961</strong>. El crecimiento necesario no puede mantenerse indefinidamente. Cobrar al inicio no elimina el riesgo para quienes entran después.</p>
+<h2 id="senales-para-detenerte">Señales para detenerte</h2>
+<ul>
+<li>Rendimiento alto presentado como seguro o sin riesgo.</li>
+<li>Prisa, cupos limitados o presión para decidir sin consultar.</li>
+<li>Explicaciones vagas y negativa a entregar documentos.</li>
+<li>Pagos por reclutar que pesan más que una actividad económica verificable.</li>
+<li>Solicitudes de depositar en cuentas personales que no coinciden con el contrato.</li>
+<li>Cobros nuevos para «desbloquear» o «liberar» lo que ya es tuyo.</li>
+</ul>
+<p>Busca el registro y las alertas del supervisor correspondiente. La SUGEVAL aclara que una entidad no inscrita no tiene por eso autorización para hacer oferta pública de valores o intermediación bursátil bajo su supervisión<sup class="ref">[<a href="#fuente-18" aria-label="Fuente 18">18</a>]</sup>.</p>
+<p>Una alerta no es por sí sola una condena penal. Y no aparecer en una lista de alertas tampoco equivale a estar autorizado.</p>
+<p>Un nombre inscrito, una patente, una oficina o el respaldo de un conocido no sustituyen la autorización para la actividad que te están ofreciendo.</p>
+<h2 id="protege-cuentas-y-transferencias">Protege cuentas y transferencias</h2>
+<p>Nunca entregues claves, códigos de un solo uso ni control remoto de tu equipo a quien te contacte inesperadamente.</p>
+<p>Si te llaman de una entidad, termina la llamada y comunícate por un canal oficial que tú hayas buscado. No uses automáticamente el número o enlace que te envía la misma persona.</p>
+<p>Confirma un pago dentro de tu cuenta. Una captura de SINPE puede estar alterada o no corresponder al depósito.</p>
+<p>No prestes cuentas, tarjetas o acceso a SINPE para mover dinero de otras personas a cambio de una comisión. Podrías quedar involucrado en actividades ilícitas.</p>
+<h2 id="gota-a-gota-seguridad-antes-que-calculo">Gota a gota: seguridad antes que cálculo</h2>
+<div class="caja historia">
+<p class="etiqueta">Caso ficticio</p>
+<p>Minor recibe <span class="money">₡100 000</span> y acepta devolver <span class="money">₡5000</span> diarios durante 24 días. En total pagaría <span class="money">₡120 000</span>.</p>
+<p>Un día no puede pagar y llegan amenazas. En ese momento, su problema ya no es únicamente cómo acomodar una cuota.</p>
+</div>
+<p>Los <span class="money">₡20 000</span> adicionales son 20 % del dinero recibido. No equivalen a una tasa mensual sobre un saldo constante, porque el capital se devuelve día a día. No compares esa cifra directamente con un tope anual dividido entre doce.</p>
+<p>Si hay peligro inmediato, busca un lugar seguro y llama al <strong>9-1-1</strong>. Para amenazas, extorsión o estafa, acude al Organismo de Investigación Judicial (OIJ) o al Ministerio Público. No confrontes al prestamista ni negocies a solas por seguir una regla del libro.</p>
+<p>Guarda mensajes y comprobantes si hacerlo es seguro. Busca apoyo de una persona de confianza que no agrave el riesgo. No pidas otro préstamo abusivo para intentar salir.</p>
+<h2 id="si-ya-enviaste-dinero">Si ya enviaste dinero</h2>
+<p>Contacta de inmediato a tu entidad financiera por un canal oficial. Explica lo ocurrido y solicita las medidas de protección o gestión que correspondan. No se puede prometer que el dinero se recuperará.</p>
+<p>Si diste acceso o credenciales, sigue las indicaciones oficiales para bloquear y recuperar el control de las cuentas. Conserva evidencias y presenta denuncia.</p>
+<p>Desconfía de quien promete recuperar todo a cambio de un pago anticipado. La urgencia por recuperar una pérdida puede abrir la puerta a otra estafa.</p>
+<div class="caja ejercicio">
+<p class="etiqueta">Una acción posible</p>
+<p><strong>Antes de transferir.</strong> Escribe: quién recibe el dinero, qué estás comprando, qué autorización corresponde, cómo saldrías y cuánto podrías perder. Si una respuesta importante falta, detente.</p>
+</div>
+<div class="caja biblia">
+<p class="etiqueta">Reflexión bíblica opcional</p>
+<blockquote>
+<p>¡Solo los simplones creen todo lo que se les dice! Los prudentes examinan cuidadosamente sus pasos.</p>
+</blockquote>
+<p class="cita">Proverbios 14:15 (NTV)</p>
+</div>
+<h1 id="cierre-el-proximo-paso-si-cuenta">Cierre. El próximo paso sí cuenta</h1>
+<p>No todo depende de ti: influyen tus ingresos, tu salud, los cuidados y las oportunidades. Pero conocer un saldo, pedir orientación o evitar una nueva deuda ya puede ser un avance.</p>
+<h2 id="un-plan-de-cuatro-semanas">Un plan de cuatro semanas</h2>
+<table>
+<thead>
+<tr>
+<th>Semana</th>
+<th>Acción principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Anota ingresos, gastos esenciales y fechas. Identifica si existe un faltante.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reúne saldos de deuda y documentos de protección. Haz una consulta pendiente.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Elige una acción: estabilizar, iniciar reserva, negociar un pago o comparar una inversión adecuada.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Compara lo planeado con lo ocurrido. Ajusta sin esconder errores ni castigarte por ellos.</td>
+</tr>
+</tbody>
+</table>
+<p>No tienes que terminar todos los pasos en un mes. La meta de estas semanas es empezar una práctica que puedas repetir.</p>
+<p>Cuando tu situación cambie, cambia el plan. Si necesitas ayuda, buscarla no invalida lo que has logrado.</p>
+<p>El buey de la portada no promete una llegada perfecta. Recuerda que puedes avanzar con constancia, detenerte a revisar y pedir apoyo cuando la carga pesa demasiado.</p>
+<div class="caja reflexion">
+<p class="etiqueta">Reflexión opcional</p>
+<p><strong>Lectura bíblica opcional: Proverbios 16:3.</strong> Encomendar tus planes puede acompañar la acción y la búsqueda de consejo. No es una garantía de rentabilidad ni una medida del valor de tu fe.</p>
+</div>
+<h1 id="anexos-para-usar-no-para-memorizar">Anexos para usar, no para memorizar</h1>
+<h2 id="a-plan-del-mes">A. Plan del mes</h2>
+<p>Usa una sola base: ingreso después de deducciones obligatorias, registrando aparte cuotas por planilla, o depósito disponible sin volver a restar esas cuotas. En «real» anota lo que ocurrió.</p>
+<div class="caja hoja">
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Planeado</th>
+<th>Real</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ingreso disponible</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Alimentación</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vivienda</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Salud y cuidados</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Servicios esenciales</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transporte necesario</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Obligaciones alimentarias</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Educación</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gastos previsibles apartados</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Deudas no descontadas ya del ingreso</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Reserva o meta actual</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apoyo a familiares</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gustos y aportes voluntarios</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Otros, con nombre</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ingreso menos destinos</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Si el resultado es negativo, hay un faltante que atender. Si es positivo, asigna el sobrante conscientemente. No cambies las cifras para que la hoja «quede bien».</p>
+<h2 id="b-calendario-hasta-el-proximo-ingreso">B. Calendario hasta el próximo ingreso</h2>
+<p><strong>Dinero disponible al comenzar:</strong> __________<br>
+<strong>Próximo ingreso confirmado: fecha y monto:</strong> __________</p>
+<div class="caja hoja">
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Qué entra o qué debes pagar</th>
+<th>Entrada</th>
+<th>Salida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Dinero al final = dinero inicial + entradas − salidas.</strong> Revisa también cada fecha intermedia: puedes quedar sin efectivo antes del ingreso final.</p>
+<h2 id="c-inventario-de-deudas">C. Inventario de deudas</h2>
+<p>Incluye la hipoteca y obligaciones prioritarias en el inventario general, pero sepáralas al elegir la estrategia de deudas de consumo. Marca «planilla» cuando un pago ya esté rebajado.</p>
+<div class="caja hoja">
+<table>
+<thead>
+<tr>
+<th>Deuda</th>
+<th>Saldo</th>
+<th>Pago exigible</th>
+<th>Tasa y periodo</th>
+<th>Vencimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Atrasos o cargos que falta confirmar:</strong> __________<br>
+<strong>Estrategia elegida y deuda objetivo:</strong> __________<br>
+<strong>Extra sostenible, después de cubrir necesidades y demás pagos:</strong> __________<br>
+<strong>Si no alcanza, gestión que haré y fecha:</strong> __________</p>
+<h2 id="d-gastos-que-vienen">D. Gastos que vienen</h2>
+<div class="caja hoja">
+<table>
+<thead>
+<tr>
+<th>Gasto y fecha</th>
+<th>Total previsto</th>
+<th>Ya ahorrado</th>
+<th>Falta ahorrar</th>
+<th>Meses restantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Aporte mensual orientativo = falta ahorrar ÷ meses restantes.</strong> Si vence antes de un mes, trabaja por semanas o fechas. Si no cabe, identifica el faltante y una alternativa.</p>
+<h2 id="e-ficha-antes-de-contratar">E. Ficha antes de contratar</h2>
+<p><strong>Objetivo y fecha de uso del dinero:</strong> __________<br>
+<strong>Entidad y producto exactos:</strong> __________<br>
+<strong>Supervisor y registro que confirmé:</strong> __________<br>
+<strong>Dinero que aporto o recibo:</strong> __________<br>
+<strong>Total de pagos, comisiones e impuestos:</strong> __________<br>
+<strong>Moneda y riesgo de cambio:</strong> __________<br>
+<strong>Cuándo puedo salir y cuánto cuesta:</strong> __________<br>
+<strong>Qué podría perder y qué protección existe:</strong> __________<br>
+<strong>Condiciones que aún no entiendo:</strong> __________</p>
+<p>No firmes porque una casilla importante resulte incómoda de preguntar.</p>
+<h2 id="f-glosario-breve">F. Glosario breve</h2>
+<p><strong>Capital o principal.</strong> Dinero inicial de una deuda o inversión; no son los intereses.</p>
+<p><strong>Comisión.</strong> Cobro por un servicio o una operación. Puede cambiar mucho el costo final.</p>
+<p><strong>Ingreso bruto.</strong> Antes de deducciones. En un negocio, las ventas brutas no son el dinero libre para la persona dueña.</p>
+<p><strong>Ingreso disponible.</strong> Dinero con el que realmente puedes cubrir el presupuesto, después de separar lo que corresponde.</p>
+<p><strong>Interés.</strong> Precio de usar dinero prestado o rendimiento que puede recibir quien lo coloca.</p>
+<p><strong>Inflación.</strong> Aumento general de precios. No todos los productos ni todos los hogares enfrentan exactamente el mismo cambio.</p>
+<p><strong>Rendimiento real.</strong> Ganancia o pérdida medida en poder de compra, después de considerar la inflación. Para saber lo que te queda, también importan costos e impuestos.</p>
+<p><strong>Liquidez.</strong> Facilidad de disponer de dinero o convertir un activo en dinero sin una pérdida importante.</p>
+<p><strong>Diversificar.</strong> Repartir inversiones para no depender de una sola. No elimina todas las pérdidas.</p>
+<p><strong>Prospecto.</strong> Documento que explica características, riesgos y condiciones de un producto de inversión.</p>
+<p><strong>Patrimonio.</strong> Valor de lo que tienes menos lo que debes. No es igual al saldo disponible en una cuenta.</p>
+<p><strong>Prima.</strong> En una compra financiada de vivienda, parte del precio que aportas al inicio. En seguros, significa el precio de la cobertura.</p>
+<p><strong>Punto porcentual.</strong> Diferencia entre porcentajes: pasar de 9 % a 12 % es subir tres puntos porcentuales.</p>
+<p><strong>Subsidio.</strong> Ayuda económica sujeta a reglas. No debe contarse como ingreso confirmado antes de saber si corresponde.</p>
+<p><strong>SINPE.</strong> Sistema Nacional de Pagos Electrónicos del BCCR. Verifica los depósitos en tu propia cuenta, no en capturas ajenas.</p>
+<h2 id="g-donde-consultar">G. Dónde consultar</h2>
+<p>Entra escribiendo la dirección oficial o busca la institución por un medio confiable. No uses un enlace enviado por alguien que te esté presionando. Si no puedes usar internet, consulta opciones presenciales o telefónicas de la institución.</p>
+<table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Institución y dirección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aseguramiento, cuotas e historial del IVM</td>
+<td>CCSS: <a href="https://www.ccss.sa.cr">https://www.ccss.sa.cr</a></td>
+</tr>
+<tr>
+<td>Aguinaldo, cesantía y derechos laborales</td>
+<td>MTSS: <a href="https://www.mtss.go.cr">https://www.mtss.go.cr</a></td>
+</tr>
+<tr>
+<td>Pensiones complementarias y FCL</td>
+<td>SUPEN: <a href="https://www.supen.fi.cr">https://www.supen.fi.cr</a></td>
+</tr>
+<tr>
+<td>Entidades financieras supervisadas e información crediticia</td>
+<td>SUGEF: <a href="https://www.sugef.fi.cr">https://www.sugef.fi.cr</a></td>
+</tr>
+<tr>
+<td>Oferta pública de inversiones y alertas</td>
+<td>SUGEVAL: <a href="https://www.sugeval.fi.cr">https://www.sugeval.fi.cr</a></td>
+</tr>
+<tr>
+<td>Aseguradoras, intermediarios y productos</td>
+<td>SUGESE: <a href="https://www.sugese.fi.cr">https://www.sugese.fi.cr</a></td>
+</tr>
+<tr>
+<td>Topes de interés y garantía de depósitos</td>
+<td>BCCR: <a href="https://www.bccr.fi.cr">https://www.bccr.fi.cr</a></td>
+</tr>
+<tr>
+<td>Orientación de consumo y cobros</td>
+<td>MEIC: <a href="https://www.meic.go.cr">https://www.meic.go.cr</a></td>
+</tr>
+<tr>
+<td>Bono de vivienda y entidades autorizadas</td>
+<td>BANHVI: <a href="https://www.banhvi.fi.cr">https://www.banhvi.fi.cr</a></td>
+</tr>
+<tr>
+<td>Planes de ahorro y préstamo</td>
+<td>INVU: <a href="https://www.invu.go.cr">https://www.invu.go.cr</a></td>
+</tr>
+<tr>
+<td>Ayudas sociales y requisitos</td>
+<td>IMAS: <a href="https://www.imas.go.cr">https://www.imas.go.cr</a></td>
+</tr>
+<tr>
+<td>Obligaciones tributarias</td>
+<td>Hacienda: <a href="https://www.hacienda.go.cr">https://www.hacienda.go.cr</a></td>
+</tr>
+<tr>
+<td>Denuncias de estafa, amenazas o extorsión</td>
+<td>OIJ: <a href="https://sitiooij.poder-judicial.go.cr">https://sitiooij.poder-judicial.go.cr</a> o Ministerio Público: <a href="https://ministeriopublico.poder-judicial.go.cr">https://ministeriopublico.poder-judicial.go.cr</a></td>
+</tr>
+<tr>
+<td>Peligro inmediato</td>
+<td>Sistema de Emergencias: <strong>9-1-1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>La institución orienta dentro de su competencia; no todas resuelven cualquier reclamo. Confirma el canal y los requisitos. Los sitios y trámites pueden cambiar.</p>
+<h2 id="h-consulta-opcional-tasas-e-inversion-internacional">H. Consulta opcional: tasas e inversión internacional</h2>
+<h3 id="tasas-que-no-debes-mezclar">Tasas que no debes mezclar</h3>
+<p>Una tasa mensual de 2 % equivale a una nominal anual de 24 % si multiplicas por doce. Si capitalizas cada mes, la efectiva anual es <code>(1,02^12 − 1) × 100</code>, aproximadamente 26,82 %.</p>
+<p>El costo contractual puede incluir más componentes. Pide que te expliquen cómo se calcula la tasa total aplicable, sin usar estas equivalencias como una certificación legal.</p>
+<p><strong>Topes publicados por el BCCR en julio de 2026</strong><sup class="ref">[<a href="#fuente-13" aria-label="Fuente 13">13</a>]</sup>:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de crédito</th>
+<th>Colones</th>
+<th>Dólares</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crédito general</td>
+<td>36,48 % anual</td>
+<td>30,11 % anual</td>
+</tr>
+<tr>
+<td>Microcrédito</td>
+<td>51,51 % anual</td>
+<td>42,65 % anual</td>
+</tr>
+</tbody>
+</table>
+<p>Esta tabla no es una cotización ni un dato permanente. Verifica el semestre y la clasificación de la operación. Las tarjetas están excluidas de la definición legal de microcrédito<sup class="ref">[<a href="#fuente-12" aria-label="Fuente 12">12</a>]</sup>.</p>
+<h3 id="antes-de-usar-un-intermediario-extranjero">Antes de usar un intermediario extranjero</h3>
+<p>Un bróker es un intermediario para comprar y vender inversiones. Puede dar acceso a más opciones, pero agrega decisiones de custodia, transferencias, moneda, impuestos y sucesión.</p>
+<p>En Estados Unidos, la Securities Investor Protection Corporation (SIPC) protege determinados activos faltantes de clientes de <strong>intermediarios miembros</strong> en un proceso de liquidación, hasta <span class="money">US$500 000</span>, con un límite incluido de <span class="money">US$250 000</span> para efectivo. No cubre pérdidas por caídas del mercado ni toda clase de activos. No exige que el cliente sea ciudadano o residente estadounidense<sup class="ref">[<a href="#fuente-21" aria-label="Fuente 21">21</a>]</sup>.</p>
+<p>El Servicio de Impuestos Internos de Estados Unidos (IRS) explica una retención general de 30 % sobre ciertos ingresos de fuente estadounidense para personas extranjeras, con excepciones. Costa Rica no figura en la lista de tratados de impuesto sobre la renta consultada para esta edición<sup class="ref">[<a href="#fuente-22" aria-label="Fuente 22">22</a>, <a href="#fuente-23" aria-label="Fuente 23">23</a>]</sup>. Tu residencia fiscal, condición personal y producto importan; no apliques esa tasa a cualquier ingreso extranjero sin revisión.</p>
+<p>Para una sucesión de una persona no residente y no ciudadana de Estados Unidos, tener más de <span class="money">US$60 000</span> en ciertos activos situados allí puede generar obligación de presentar el formulario sucesorio correspondiente. <strong>Ese umbral no significa una factura automática ni depende solo del país del bróker</strong><sup class="ref">[<a href="#fuente-24" aria-label="Fuente 24">24</a>]</sup>.</p>
+<p>Confirma también las obligaciones en Costa Rica. La moneda en que cotiza un fondo, el domicilio del fondo, los activos que contiene y el lugar donde está el intermediario son cosas distintas.</p>
+<p>Si estas condiciones no están claras, no hay prisa por abrir una cuenta. Primero busca orientación competente que explique costos y riesgos, no solo ventajas.</p>
+<h1 id="fuentes">Fuentes</h1>
+<ol class="fuentes-lista">
+<li id="fuente-1"><p>Tyndale Español. (s. f.). <em>Permisos</em>. Condiciones de citas de la Nueva Traducción Viviente. Consultado el 27 de octubre de 2026. <a href="https://www.tyndaleespanol.com/permisos">https://www.tyndaleespanol.com/permisos</a></p></li>
+<li id="fuente-2"><p>Ramsey, D. (2003). <em>The total money makeover: A proven plan for financial fitness</em>. Thomas Nelson. Referente del método; esta propuesta no aplica sus reglas como leyes universales.</p></li>
+<li id="fuente-3"><p>UNESCO. (s. f.). <em>La tradición del boyeo y las carretas</em>. Patrimonio cultural inmaterial. <a href="https://ich.unesco.org/es/RL/la-tradicion-del-boyeo-y-las-carretas-00103">https://ich.unesco.org/es/RL/la-tradicion-del-boyeo-y-las-carretas-00103</a></p></li>
+<li id="fuente-4"><p>Caja Costarricense de Seguro Social. (2004). <em>Reglamento para la afiliación de los trabajadores independientes</em>, art. 2. Copia histórica citada para señalar sus excepciones, no como certificación de la normativa completa vigente en 2026. <a href="https://costarica.eregulations.org/media/reglamento_afiliacion_trabajadores_independientes.pdf">https://costarica.eregulations.org/media/reglamento_afiliacion_trabajadores_independientes.pdf</a></p></li>
+<li id="fuente-5"><p><em>Constitución Política de la República de Costa Rica</em>, art. 78. Tribunal Supremo de Elecciones. <a href="https://www.tse.go.cr/pdf/normativa/constitucion.pdf">https://www.tse.go.cr/pdf/normativa/constitucion.pdf</a></p></li>
+<li id="fuente-6"><p>Superintendencia de Pensiones. (s. f.). <em>FCL</em>. Consultado el 27 de octubre de 2026. <a href="https://www.supen.fi.cr/fcl">https://www.supen.fi.cr/fcl</a></p></li>
+<li id="fuente-7"><p>Ley n.º 2. <em>Código de Trabajo</em>, artículos pertinentes sobre cesantía, embargo y riesgos del trabajo. Copia del Ministerio de Trabajo y Seguridad Social. Verificar reformas y aplicación al caso concreto. <a href="https://www.mtss.go.cr/elministerio/marco-legal/documentos/Codigo_Trabajo_RPL.pdf">https://www.mtss.go.cr/elministerio/marco-legal/documentos/Codigo_Trabajo_RPL.pdf</a></p></li>
+<li id="fuente-8"><p>Ministerio de Trabajo y Seguridad Social. (s. f.). <em>Temas laborales</em>. Secciones sobre aguinaldo y derechos laborales. Consultado el 27 de octubre de 2026. <a href="https://www.mtss.go.cr/temas-laborales/">https://www.mtss.go.cr/temas-laborales/</a></p></li>
+<li id="fuente-9"><p>Lindqvist, E., Östling, R. y Cesarini, D. (2020). Long-run effects of lottery wealth on psychological well-being. <em>The Review of Economic Studies, 87</em>(6), 2703–2726. Resumen editorial consultado mediante Crossref. <a href="https://doi.org/10.1093/restud/rdaa006">https://doi.org/10.1093/restud/rdaa006</a></p></li>
+<li id="fuente-10"><p>Ministerio de Hacienda. (2024, 18 de noviembre). <em>Hacienda depositará este 05 de diciembre más de ₡242 mil millones en aguinaldos</em> [CP-98-2024]. Fuente del periodo de cálculo descrito para Presupuesto Nacional; confirmar régimen vigente. <a href="https://www.hacienda.go.cr/docs/CP982024.pdf">https://www.hacienda.go.cr/docs/CP982024.pdf</a></p></li>
+<li id="fuente-11"><p>Ministerio de Hacienda. (2025, 14 de enero). <em>Gobierno depositará este 24 de enero más de ₡161 mil millones por salario escolar</em> [CP-03-2025]. Fuente de la base de cálculo y deducciones; confirmar régimen y calendario vigentes. <a href="https://www.hacienda.go.cr/docs/CP03-SALARIO_ESCOLAR_2025.pdf">https://www.hacienda.go.cr/docs/CP03-SALARIO_ESCOLAR_2025.pdf</a></p></li>
+<li id="fuente-12"><p>Ley n.º 9859. (2020). Reforma de la Ley 7472, incluidos límites en operaciones financieras y definición de microcrédito. Sistema Costarricense de Información Jurídica. Consultar normativa consolidada para decisiones legales. <a href="https://www.pgrweb.go.cr/DOCS/NORMAS/1/VIGENTE/L/2020-2029/2020-2024/2020/1660F/13842E.HTML">https://www.pgrweb.go.cr/DOCS/NORMAS/1/VIGENTE/L/2020-2029/2020-2024/2020/1660F/13842E.HTML</a></p></li>
+<li id="fuente-13"><p>Banco Central de Costa Rica. (2026, 3 de julio). <em>Nuevas tasas de interés anuales máximas para créditos y microcréditos</em> [CP-BCCR-017-2026]. <a href="https://www.bccr.fi.cr/content/dam/bccr/comunicacion-y-prensa/comunicados-de-prensa/cp-bccr-017-2026-tasas-maximas-interes-julio-2026.pdf">https://www.bccr.fi.cr/content/dam/bccr/comunicacion-y-prensa/comunicados-de-prensa/cp-bccr-017-2026-tasas-maximas-interes-julio-2026.pdf</a></p></li>
+<li id="fuente-14"><p>Gal, D. y McShane, B. B. (2012). Can small victories help win the war? Evidence from consumer debt management. <em>Journal of Marketing Research, 49</em>(4), 487–501. Resumen editorial consultado mediante Crossref. <a href="https://doi.org/10.1509/jmr.11.0272">https://doi.org/10.1509/jmr.11.0272</a></p></li>
+<li id="fuente-15"><p>Banco Central de Costa Rica. (s. f.). <em>Fondo de Garantía de Depósitos</em>. Definición, contribuyentes y productos garantizados. Consultado el 27 de octubre de 2026. <a href="https://www.bccr.fi.cr/cr/es/fondo-garantia-depositos.html">https://www.bccr.fi.cr/cr/es/fondo-garantia-depositos.html</a></p></li>
+<li id="fuente-16"><p>Ministerio de Hacienda. (s. f.). <em>Tarifas de rentas de capital y ganancias de capital</em>. Incluye excepciones y disposiciones transitorias. <a href="https://www.hacienda.go.cr/docs/TarifasRentasCapital.pdf">https://www.hacienda.go.cr/docs/TarifasRentasCapital.pdf</a></p></li>
+<li id="fuente-17"><p>Superintendencia de Pensiones. (s. f.). <em>¿Cómo obtener una mejor pensión? (Régimen voluntario)</em>. Consultado el 27 de octubre de 2026. <a href="https://www.supen.fi.cr/como-obtener-una-mejor-pension">https://www.supen.fi.cr/como-obtener-una-mejor-pension</a></p></li>
+<li id="fuente-18"><p>Superintendencia General de Valores. (s. f.). <em>Alertas al inversionista</em>. Incluye acceso al Registro Nacional de Valores e Intermediarios. Consultado el 27 de octubre de 2026. <a href="https://www.sugeval.fi.cr/cr/es/informacion-inversionistas/alertas-al-inversionista.html">https://www.sugeval.fi.cr/cr/es/informacion-inversionistas/alertas-al-inversionista.html</a></p></li>
+<li id="fuente-19"><p>Instituto Nacional de Vivienda y Urbanismo. (s. f.). <em>Planes de ahorro</em>. Consultado el 27 de octubre de 2026. <a href="https://www.invu.go.cr/planes-de-ahorro">https://www.invu.go.cr/planes-de-ahorro</a></p></li>
+<li id="fuente-20"><p>Banco Hipotecario de la Vivienda. (s. f.). <em>Montos de bono según ingreso familiar</em>. Tabla general de 2026, consultada el 27 de octubre de 2026. <a href="https://www.banhvi.fi.cr/bono/montos_segun_ingreso_familiar.aspx">https://www.banhvi.fi.cr/bono/montos_segun_ingreso_familiar.aspx</a></p></li>
+<li id="fuente-21"><p>Securities Investor Protection Corporation. (s. f.). <em>What SIPC protects</em>. Consultado el 27 de octubre de 2026. <a href="https://www.sipc.org/for-investors/what-sipc-protects">https://www.sipc.org/for-investors/what-sipc-protects</a></p></li>
+<li id="fuente-22"><p>Internal Revenue Service. (s. f.). <em>NRA withholding</em>. Consultado el 27 de octubre de 2026. <a href="https://www.irs.gov/individuals/international-taxpayers/nra-withholding">https://www.irs.gov/individuals/international-taxpayers/nra-withholding</a></p></li>
+<li id="fuente-23"><p>Internal Revenue Service. (s. f.). <em>United States income tax treaties—A to Z</em>. Consultado el 27 de octubre de 2026. <a href="https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z">https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z</a></p></li>
+<li id="fuente-24"><p>Internal Revenue Service. (s. f.). <em>Some nonresidents with U.S. assets must file estate tax returns</em>. Consultado el 27 de octubre de 2026. <a href="https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-us-assets-must-file-estate-tax-returns">https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-us-assets-must-file-estate-tax-returns</a></p></li>
+</ol>
+</body>
+</html>

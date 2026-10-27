@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 550 850" width="5.5in" height="8.5in" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">El método aburrido de construir tus finanzas</title>
+  <desc id="desc">Ilustración original: un buey sonriente frente a una rueda de carreta pintada al estilo costarricense, con ramas de café en las esquinas y pilas de monedas que crecen poco a poco.</desc>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF5E6"/>
+      <stop offset="0.55" stop-color="#F3EEDB"/>
+      <stop offset="1" stop-color="#DCEBD2"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F7E3B5" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#F7E3B5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="piel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A9663A"/>
+      <stop offset="1" stop-color="#84482A"/>
+    </linearGradient>
+    <radialGradient id="torso" gradientUnits="userSpaceOnUse" cx="275" cy="560" r="125">
+      <stop offset="0" stop-color="#B5703F"/>
+      <stop offset="0.7" stop-color="#9A5631"/>
+      <stop offset="1" stop-color="#7A4024"/>
+    </radialGradient>
+    <radialGradient id="cara" cx="0.5" cy="0.38" r="0.62">
+      <stop offset="0" stop-color="#C98D5A"/>
+      <stop offset="1" stop-color="#A2603A"/>
+    </radialGradient>
+    <linearGradient id="hocico" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EED3B8"/>
+      <stop offset="1" stop-color="#DDB496"/>
+    </linearGradient>
+    <linearGradient id="cuernoI" gradientUnits="userSpaceOnUse" x1="250" y1="380" x2="163" y2="325">
+      <stop offset="0" stop-color="#F4E9D0"/>
+      <stop offset="0.7" stop-color="#E2D2AE"/>
+      <stop offset="1" stop-color="#8F7A58"/>
+    </linearGradient>
+    <linearGradient id="cuernoD" gradientUnits="userSpaceOnUse" x1="300" y1="380" x2="387" y2="325">
+      <stop offset="0" stop-color="#F4E9D0"/>
+      <stop offset="0.7" stop-color="#E2D2AE"/>
+      <stop offset="1" stop-color="#8F7A58"/>
+    </linearGradient>
+    <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8D46A"/>
+      <stop offset="1" stop-color="#E2A23A"/>
+    </linearGradient>
+    <path id="hoja" d="M0,0 C18,-17 54,-17 74,0 C54,17 18,17 0,0 Z"/>
+    <g id="grano">
+      <circle r="7.2" fill="#B8322A"/>
+      <circle cx="-2.2" cy="-2.4" r="2.2" fill="#F2A08F" opacity="0.85"/>
+      <circle cx="2.6" cy="3" r="1.3" fill="#5A1A14"/>
+    </g>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="550" height="850" fill="url(#fondo)"/>
+  <circle cx="275" cy="425" r="245" fill="url(#halo)"/>
+
+  <!-- Ramas de café en las esquinas superiores -->
+  <g>
+    <path d="M-10,118 C30,96 70,70 104,30 C114,18 120,6 124,-10" stroke="#6E4B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(30,96) rotate(155) scale(0.95)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(40,90) rotate(-20) scale(0.85)" fill="#5E9A66"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(84,52) rotate(-140) scale(0.8)" fill="#4E8B5C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(92,44) rotate(20) scale(0.78)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(116,8) rotate(-30) scale(0.7)" fill="#6BA56C"/>
+    <use href="#grano" xlink:href="#grano" x="52" y="86"/><use href="#grano" xlink:href="#grano" x="62" y="80"/>
+    <use href="#grano" xlink:href="#grano" x="56" y="74"/><use href="#grano" xlink:href="#grano" x="98" y="40"/>
+    <use href="#grano" xlink:href="#grano" x="106" y="32"/><use href="#grano" xlink:href="#grano" x="96" y="27"/>
+  </g>
+  <g transform="translate(550,0) scale(-1,1)">
+    <path d="M-10,118 C30,96 70,70 104,30 C114,18 120,6 124,-10" stroke="#6E4B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(30,96) rotate(155) scale(0.95)" fill="#4E8B5C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(40,90) rotate(-20) scale(0.85)" fill="#3F7A4F"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(84,52) rotate(-140) scale(0.8)" fill="#6BA56C"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(92,44) rotate(20) scale(0.78)" fill="#5E9A66"/>
+    <use href="#hoja" xlink:href="#hoja" transform="translate(116,8) rotate(-30) scale(0.7)" fill="#3F7A4F"/>
+    <use href="#grano" xlink:href="#grano" x="52" y="86"/><use href="#grano" xlink:href="#grano" x="62" y="80"/>
+    <use href="#grano" xlink:href="#grano" x="98" y="40"/><use href="#grano" xlink:href="#grano" x="106" y="32"/>
+  </g>
+
+  <!-- Autor y título -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="275" y="50" font-size="15" letter-spacing="4.5" fill="#4A3222">MARIO BARRANTES</text>
+    <text x="275" y="98" font-size="23" letter-spacing="7" fill="#2F5D46">EL MÉTODO</text>
+    <text x="275" y="176" font-size="86" font-style="italic" fill="#4A3222">aburrido</text>
+    <text x="275" y="222" font-size="29" fill="#1F4D3A">de construir tus finanzas</text>
+  </g>
+
+  <!-- Rueda de carreta pintada -->
+  <g id="rueda">
+    <circle cx="275" cy="425" r="178" fill="#3A2A1F"/>
+    <circle cx="275" cy="425" r="174" fill="none" stroke="#7A6250" stroke-width="1.5"/>
+    <circle cx="275" cy="425" r="170" fill="#B83A2A"/>
+    <g fill="#F6E9CF">
+<path d="M264.8,274.3 L275.0,258.0 L285.2,274.3 Z"/>
+<path d="M288.5,274.6 L301.1,260.1 L308.6,277.8 Z"/>
+<path d="M311.9,278.6 L326.6,266.2 L331.2,284.9 Z"/>
+<path d="M334.3,286.1 L350.8,276.2 L352.5,295.4 Z"/>
+<path d="M355.3,297.1 L373.2,289.9 L371.8,309.1 Z"/>
+<path d="M374.3,311.3 L393.1,306.9 L388.7,325.7 Z"/>
+<path d="M390.9,328.2 L410.1,326.8 L402.9,344.7 Z"/>
+<path d="M404.6,347.5 L423.8,349.2 L413.9,365.7 Z"/>
+<path d="M415.1,368.8 L433.8,373.4 L421.4,388.1 Z"/>
+<path d="M422.2,391.4 L439.9,398.9 L425.4,411.5 Z"/>
+<path d="M425.7,414.8 L442.0,425.0 L425.7,435.2 Z"/>
+<path d="M425.4,438.5 L439.9,451.1 L422.2,458.6 Z"/>
+<path d="M421.4,461.9 L433.8,476.6 L415.1,481.2 Z"/>
+<path d="M413.9,484.3 L423.8,500.8 L404.6,502.5 Z"/>
+<path d="M402.9,505.3 L410.1,523.2 L390.9,521.8 Z"/>
+<path d="M388.7,524.3 L393.1,543.1 L374.3,538.7 Z"/>
+<path d="M371.8,540.9 L373.2,560.1 L355.3,552.9 Z"/>
+<path d="M352.5,554.6 L350.8,573.8 L334.3,563.9 Z"/>
+<path d="M331.2,565.1 L326.6,583.8 L311.9,571.4 Z"/>
+<path d="M308.6,572.2 L301.1,589.9 L288.5,575.4 Z"/>
+<path d="M285.2,575.7 L275.0,592.0 L264.8,575.7 Z"/>
+<path d="M261.5,575.4 L248.9,589.9 L241.4,572.2 Z"/>
+<path d="M238.1,571.4 L223.4,583.8 L218.8,565.1 Z"/>
+<path d="M215.7,563.9 L199.2,573.8 L197.5,554.6 Z"/>
+<path d="M194.7,552.9 L176.8,560.1 L178.2,540.9 Z"/>
+<path d="M175.7,538.7 L156.9,543.1 L161.3,524.3 Z"/>
+<path d="M159.1,521.8 L139.9,523.2 L147.1,505.3 Z"/>
+<path d="M145.4,502.5 L126.2,500.8 L136.1,484.3 Z"/>
+<path d="M134.9,481.2 L116.2,476.6 L128.6,461.9 Z"/>
+<path d="M127.8,458.6 L110.1,451.1 L124.6,438.5 Z"/>
+<path d="M124.3,435.2 L108.0,425.0 L124.3,414.8 Z"/>
+<path d="M124.6,411.5 L110.1,398.9 L127.8,391.4 Z"/>
+<path d="M128.6,388.1 L116.2,373.4 L134.9,368.8 Z"/>
+<path d="M136.1,365.7 L126.2,349.2 L145.4,347.5 Z"/>
+<path d="M147.1,344.7 L139.9,326.8 L159.1,328.2 Z"/>
+<path d="M161.3,325.7 L156.9,306.9 L175.7,311.3 Z"/>
+<path d="M178.2,309.1 L176.8,289.9 L194.7,297.1 Z"/>
+<path d="M197.5,295.4 L199.2,276.2 L215.7,286.1 Z"/>
+<path d="M218.8,284.9 L223.4,266.2 L238.1,278.6 Z"/>
+<path d="M241.4,277.8 L248.9,260.1 L261.5,274.6 Z"/>
+    </g>
+    <circle cx="275" cy="425" r="151" fill="#F0B43A"/>
+    <g fill="#B83A2A">
+<circle cx="275.0" cy="281.5" r="3.1"/>
+<circle cx="299.9" cy="283.7" r="3.1"/>
+<circle cx="324.1" cy="290.2" r="3.1"/>
+<circle cx="346.8" cy="300.7" r="3.1"/>
+<circle cx="367.2" cy="315.1" r="3.1"/>
+<circle cx="384.9" cy="332.8" r="3.1"/>
+<circle cx="399.3" cy="353.2" r="3.1"/>
+<circle cx="409.8" cy="375.9" r="3.1"/>
+<circle cx="416.3" cy="400.1" r="3.1"/>
+<circle cx="418.5" cy="425.0" r="3.1"/>
+<circle cx="416.3" cy="449.9" r="3.1"/>
+<circle cx="409.8" cy="474.1" r="3.1"/>
+<circle cx="399.3" cy="496.8" r="3.1"/>
+<circle cx="384.9" cy="517.2" r="3.1"/>
+<circle cx="367.2" cy="534.9" r="3.1"/>
+<circle cx="346.8" cy="549.3" r="3.1"/>
+<circle cx="324.1" cy="559.8" r="3.1"/>
+<circle cx="299.9" cy="566.3" r="3.1"/>
+<circle cx="275.0" cy="568.5" r="3.1"/>
+<circle cx="250.1" cy="566.3" r="3.1"/>
+<circle cx="225.9" cy="559.8" r="3.1"/>
+<circle cx="203.3" cy="549.3" r="3.1"/>
+<circle cx="182.8" cy="534.9" r="3.1"/>
+<circle cx="165.1" cy="517.2" r="3.1"/>
+<circle cx="150.7" cy="496.8" r="3.1"/>
+<circle cx="140.2" cy="474.1" r="3.1"/>
+<circle cx="133.7" cy="449.9" r="3.1"/>
+<circle cx="131.5" cy="425.0" r="3.1"/>
+<circle cx="133.7" cy="400.1" r="3.1"/>
+<circle cx="140.2" cy="375.9" r="3.1"/>
+<circle cx="150.7" cy="353.2" r="3.1"/>
+<circle cx="165.1" cy="332.8" r="3.1"/>
+<circle cx="182.8" cy="315.1" r="3.1"/>
+<circle cx="203.2" cy="300.7" r="3.1"/>
+<circle cx="225.9" cy="290.2" r="3.1"/>
+<circle cx="250.1" cy="283.7" r="3.1"/>
+    </g>
+    <circle cx="275" cy="425" r="136" fill="#2E5E86"/>
+    <circle cx="275" cy="425" r="129" fill="#F7EEDC"/>
+    <path d="M275.0,298.0 L295.7,347.7 L338.5,315.0 L331.6,368.4 L385.0,361.5 L352.3,404.3 L402.0,425.0 L352.3,445.7 L385.0,488.5 L331.6,481.6 L338.5,535.0 L295.7,502.3 L275.0,552.0 L254.3,502.3 L211.5,535.0 L218.4,481.6 L165.0,488.5 L197.7,445.7 L148.0,425.0 L197.7,404.3 L165.0,361.5 L218.4,368.4 L211.5,315.0 L254.3,347.7 Z" fill="#B83A2A" stroke="#3A2A1F" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M301.9,324.5 L308.0,367.8 L348.5,351.5 L332.2,392.0 L375.5,398.1 L341.0,425.0 L375.5,451.9 L332.2,458.0 L348.5,498.5 L308.0,482.2 L301.9,525.5 L275.0,491.0 L248.1,525.5 L242.0,482.2 L201.5,498.5 L217.8,458.0 L174.5,451.9 L209.0,425.0 L174.5,398.1 L217.8,392.0 L201.5,351.5 L242.0,367.8 L248.1,324.5 L275.0,359.0 Z" fill="#2E5E86" stroke="#3A2A1F" stroke-width="1.2" stroke-linejoin="round"/>
+    <g fill="#F6E9CF">
+<circle cx="275.0" cy="309.0" r="3.4"/>
+<circle cx="333.0" cy="324.5" r="3.4"/>
+<circle cx="375.5" cy="367.0" r="3.4"/>
+<circle cx="391.0" cy="425.0" r="3.4"/>
+<circle cx="375.5" cy="483.0" r="3.4"/>
+<circle cx="333.0" cy="525.5" r="3.4"/>
+<circle cx="275.0" cy="541.0" r="3.4"/>
+<circle cx="217.0" cy="525.5" r="3.4"/>
+<circle cx="174.5" cy="483.0" r="3.4"/>
+<circle cx="159.0" cy="425.0" r="3.4"/>
+<circle cx="174.5" cy="367.0" r="3.4"/>
+<circle cx="217.0" cy="324.5" r="3.4"/>
+    </g>
+    <circle cx="275" cy="425" r="70" fill="#F0B43A" stroke="#3A2A1F" stroke-width="1.2"/>
+    <g fill="#F7EEDC" stroke="#B83A2A" stroke-width="1.6">
+<path transform="rotate(22.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(67.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(112.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(157.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(202.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(247.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(292.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+<path transform="rotate(337.5 275 425)" d="M275,395 C288,381 286,363 275,357 C264,363 262,381 275,395 Z"/>
+    </g>
+    <circle cx="275" cy="425" r="34" fill="#6B4A2E" stroke="#3A2A1F" stroke-width="2"/>
+    <circle cx="275" cy="425" r="20" fill="#3A2A1F"/>
+  </g>
+
+  <!-- Sombra y suelo -->
+  <ellipse cx="275" cy="733" rx="235" ry="15" fill="#6E9A5E" opacity="0.22"/>
+  <ellipse cx="270" cy="734" rx="96" ry="7" fill="#000000" opacity="0.13"/>
+
+  <!-- Buey -->
+  <g id="buey">
+    <path d="M188,630 C186,660 190,690 196,718 L236,718 C238,690 242,660 242,630 Z" fill="#7C4226"/>
+    <path d="M362,630 C364,660 360,690 354,718 L314,718 C312,690 308,660 308,630 Z" fill="#7C4226"/>
+    <path d="M194,714 L238,714 L242,733 L190,733 Z" fill="#2F241C"/>
+    <path d="M356,714 L312,714 L308,733 L360,733 Z" fill="#2F241C"/>
+    <path d="M216,717 L216,733 M334,717 L334,733" stroke="#6A5444" stroke-width="2"/>
+    <ellipse cx="215" cy="680" rx="17" ry="8" fill="#5E321C" opacity="0.25"/>
+    <ellipse cx="335" cy="680" rx="17" ry="8" fill="#5E321C" opacity="0.25"/>
+    <path d="M226,500 C196,508 176,532 172,566 C168,600 172,630 186,652 L248,662 C262,668 288,668 302,662 L364,652 C378,630 382,600 378,566 C374,532 354,508 324,500 Z" fill="url(#torso)"/>
+    <path d="M252,566 C246,596 250,632 262,656 C268,668 282,668 288,656 C300,632 304,596 298,566 Z" fill="#B9774A" opacity="0.75"/>
+    <g stroke="#7C4226" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55">
+      <path d="M262,600 q-6,24 2,50"/>
+      <path d="M288,600 q6,24 -2,50"/>
+      <path d="M190,575 q-8,22 -4,44"/>
+      <path d="M360,575 q8,22 4,44"/>
+    </g>
+    <path d="M248,394 C222,396 196,390 180,372 C169,359 162,343 163,322 C172,338 182,350 197,359 C213,368 231,372 251,374 Z" fill="url(#cuernoI)" stroke="#6E5A40" stroke-width="1.2"/>
+    <path d="M302,394 C328,396 354,390 370,372 C381,359 388,343 387,322 C378,338 368,350 353,359 C337,368 319,372 299,374 Z" fill="url(#cuernoD)" stroke="#6E5A40" stroke-width="1.2"/>
+    <path d="M226,414 C204,408 180,414 162,432 C182,444 206,440 226,428 Z" fill="#97552F"/>
+    <path d="M324,414 C346,408 370,414 388,432 C368,444 344,440 324,428 Z" fill="#97552F"/>
+    <path d="M222,418 C205,414 187,419 173,431 C189,437 206,434 222,425 Z" fill="#E3AE90"/>
+    <path d="M328,418 C345,414 363,419 377,431 C361,437 344,434 328,425 Z" fill="#E3AE90"/>
+    <path d="M275,368 C305,368 326,378 331,398 C335,420 331,446 327,470 C323,494 317,510 313,526 C310,546 298,562 275,562 C252,562 240,546 237,526 C233,510 227,494 223,470 C219,446 215,420 219,398 C224,378 245,368 275,368 Z" fill="url(#cara)"/>
+    <path d="M260,377 C258,365 268,361 272,369 C274,359 286,359 287,369 C293,363 300,371 292,379 Z" fill="#A2603A"/>
+    <path d="M275,392 L284,405 L275,418 L266,405 Z" fill="#F4E5CF"/>
+    <!-- Ojos -->
+    <ellipse cx="243" cy="452" rx="7.5" ry="8.5" fill="#1E1610"/>
+    <ellipse cx="307" cy="452" rx="7.5" ry="8.5" fill="#1E1610"/>
+    <circle cx="245.4" cy="449.3" r="2.5" fill="#FFFFFF"/>
+    <circle cx="309.4" cy="449.3" r="2.5" fill="#FFFFFF"/>
+    <path d="M234,441 Q243,437 252,441 M298,441 Q307,437 316,441" stroke="#5A3420" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="236" cy="482" r="7" fill="#E8907A" opacity="0.35"/>
+    <circle cx="314" cy="482" r="7" fill="#E8907A" opacity="0.35"/>
+    <!-- Hocico -->
+    <ellipse cx="275" cy="538" rx="50" ry="34" fill="url(#hocico)"/>
+    <ellipse cx="256" cy="534" rx="8.5" ry="5.5" transform="rotate(-18 256 534)" fill="#5A3424"/>
+    <ellipse cx="294" cy="534" rx="8.5" ry="5.5" transform="rotate(18 294 534)" fill="#5A3424"/>
+    <path d="M256,556 Q275,568 294,556" stroke="#6B3E2C" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Monedas que crecen poco a poco -->
+  <g stroke="#B9782A" stroke-width="0.8">
+    <g><rect x="72" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="96" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="96" cy="720" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="126" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="150" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="126" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="126" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="150" cy="700" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="376" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="400" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="700" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="690" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="690" rx="24" ry="7" fill="url(#oro)"/><rect x="376" y="680" width="48" height="10" fill="#D58F2E"/><ellipse cx="400" cy="680" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g><rect x="430" y="720" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="730" rx="24" ry="7" fill="#C98326"/><ellipse cx="454" cy="720" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="710" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="710" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="700" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="700" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="690" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="690" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="680" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="680" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="670" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="670" rx="24" ry="7" fill="url(#oro)"/><rect x="430" y="660" width="48" height="10" fill="#D58F2E"/><ellipse cx="454" cy="660" rx="24" ry="7" fill="url(#oro)"/></g>
+    <g transform="rotate(-6 275 716)">
+      <circle cx="277" cy="718" r="23" fill="#C98326"/>
+      <circle cx="275" cy="716" r="23" fill="url(#oro)"/>
+      <circle cx="275" cy="716" r="18" fill="none" stroke="#C98326" stroke-width="1.5"/>
+      <text x="275" y="725" font-family="Cambria, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#9A5F17" stroke="none" text-anchor="middle">₡</text>
+    </g>
+  </g>
+
+  <!-- Subtítulo -->
+  <g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="275" y="776" font-size="18" font-style="italic" fill="#3E3A33">Finanzas personales para Costa Rica,</text>
+    <text x="275" y="800" font-size="18" font-style="italic" fill="#3E3A33">paso a paso</text>
+    <text x="275" y="834" font-size="11.5" letter-spacing="2.6" fill="#2F5D46">SIN PRISA · SIN DEUDAS · SIN CUENTOS</text>
+  </g>
+</svg>

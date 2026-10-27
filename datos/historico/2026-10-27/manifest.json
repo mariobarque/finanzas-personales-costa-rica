@@ -1,0 +1,13 @@
+{
+  "asOf": "2026-10-27",
+  "nextReview": "2027-01-27",
+  "sha256": "317b8be2cdd1507fc83f97dce23f0ee4189947d01ba701210a7ba64952799959",
+  "institutions": 73,
+  "mortgages": 76,
+  "investments": 602,
+  "sources": 536,
+  "historyObservations": 705,
+  "productsWithFullProspectusReview": 1,
+  "productsWithPartialProspectusReview": 121,
+  "productsWithHistory": 131
+}

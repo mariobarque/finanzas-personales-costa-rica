@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Un libro gratuito y herramientas transparentes para ordenar tus finanzas en Costa Rica. Hipotecas, alquiler e inversiones con fuentes y supuestos visibles.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="color-scheme" content="light">
+  <title>El método aburrido · Finanzas para la vida real</title>
+  <link rel="icon" href="assets/icono.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/sitio.css">
+  <script defer src="datos/mercado.js"></script>
+  <script defer src="js/finanzas.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">₡</span><span>EL MÉTODO ABURRIDO<small>Finanzas personales · Costa Rica</small></span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#inicio" aria-current="page">Inicio</a>
+        <a href="#hipoteca">Hipoteca</a>
+        <a href="#alquilar">Alquilar o comprar</a>
+        <a href="#inversiones">Inversiones</a>
+        <a href="#fuentes">Datos y fuentes</a>
+      </nav>
+    </div>
+  </header>
+  <div class="snapshot-bar"><div class="container"><span><span class="status-dot" aria-hidden="true"></span>Funciona sin conexión · Tus cifras no se envían</span><a id="snapshot-label" href="#fuentes">Catálogo con fecha de corte</a></div></div>
+  <p id="data-error" class="container notice danger" role="alert" hidden></p>
+  <p id="stale-notice" class="container notice warning" hidden></p>
+  <noscript><p class="container notice">Para usar las calculadoras, activa JavaScript. Puedes <a href="libro/index.html">leer el libro en HTML</a> o <a href="libro/el-metodo-aburrido-v2.pdf">abrir el PDF</a> sin las calculadoras.</p></noscript>
+
+  <main id="contenido" class="container" tabindex="-1">
+    <section id="inicio" data-view aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">SIN PRISA. SIN CUENTOS.</p>
+          <h1 id="home-title" tabindex="-1">Tu próxima decisión,<br><em>con los pies en la tierra.</em></h1>
+          <p class="lead">No necesitas ganar lo mismo que otra persona para empezar. Un libro gratuito y herramientas claras para ordenar tu plata, comparar opciones y reconocer lo que todavía falta saber.</p>
+          <div class="actions"><a class="button primary" href="libro/index.html">Leer el libro <span aria-hidden="true">↗</span></a><a class="button secondary" href="libro/el-metodo-aburrido-v2.pdf" download>Descargar PDF</a></div>
+          <p class="subtle">Mario Barrantes · Versión 2 · 60 páginas · Sin registro</p>
+        </div>
+        <a class="book-display" href="libro/index.html" aria-label="Leer El método aburrido de construir tus finanzas"><img src="assets/portada.svg" alt="Portada del libro: un buey frente a una rueda de carreta costarricense" width="550" height="850"><span class="book-tag">Una guía para la vida real</span></a>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">DEL LIBRO A TUS NÚMEROS</p><h2>Una herramienta para cada decisión</h2></div><p>Sin recomendaciones patrocinadas.<br>Con condiciones, costos y límites visibles.</p></div>
+      <div class="tool-grid">
+        <a class="tool-card" href="#hipoteca"><span class="tool-number">01</span><h3>Una casa que sí puedas sostener</h3><p>Ofertas publicadas, tasas por etapas, seguros y gastos de cierre. No solo una cuota bonita.</p><span class="text-link">Explorar hipotecas <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="#alquilar"><span class="tool-number">02</span><h3>Comprar ahora o ahorrar un poco más</h3><p>Compara tres caminos con el mismo dinero inicial, presupuesto y horizonte.</p><span class="text-link">Comparar caminos <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="#inversiones"><span class="tool-number">03</span><h3>Invertir entendiendo qué estás pagando</h3><p>Cuentas, depósitos, pensiones, fondos y un bróker internacional. Historia, comisiones y liquidez.</p><span class="text-link">Explorar el catálogo <span aria-hidden="true">→</span></span></a>
+      </div>
+      <section class="trust-panel" aria-labelledby="trust-title"><div><p class="eyebrow">LA DIFERENCIA ESTÁ EN LOS DETALLES</p><h2 id="trust-title">Un dato no es una promesa.</h2><p>Una tasa publicada tiene condiciones. Un rendimiento pasado no asegura el siguiente. Y un costo estimado debe decir que lo es.</p><a class="text-link" href="#fuentes">Ver alcance, pendientes y metodología →</a></div><dl class="stats" id="home-stats"></dl></section>
+      <p class="notice">Si hoy no alcanza para comida, vivienda, salud o cuidados, tu primer paso no tiene que ser invertir. <a href="libro/index.html#capitulo-3-un-plan-para-la-plata-que-de-verdad-tienes">Empieza por la ruta «Cuando no alcanza» del libro.</a></p>
+    </section>
+
+    <section id="hipoteca" data-view hidden aria-labelledby="mort-title">
+      <div class="page-heading"><p class="eyebrow">01 / VIVIENDA</p><h1 id="mort-title" tabindex="-1">La cuota es solo el comienzo.</h1><p class="lead">Parte de una oferta documentada y agrega lo que normalmente no sale en el anuncio. No es una aprobación ni una cotización del banco.</p></div>
+      <div class="workspace">
+        <div>
+          <form id="m-form" class="panel" novalidate>
+            <h2>Tu compra</h2>
+            <div class="fields">
+              <label>Moneda del crédito<select id="m-currency"><option value="CRC">Colones · CRC</option><option value="USD">Dólares · USD</option></select></label>
+              <label>Tipo de cambio supuesto (CRC por USD)<input id="m-fx" type="number" value="500" min="1" max="100000" step="0.01" required><small id="m-fx-note">Editable; no es una cotización cambiaria.</small></label>
+              <label class="span-2">Entidad y oferta<select id="m-product" required></select></label>
+              <label>Precio de la vivienda (<span data-m-currency>CRC</span>)<input id="m-price" type="number" value="65000000" min="1" max="1000000000000" step="0.01" required></label>
+              <label>Prima (<span data-m-currency>CRC</span>)<input id="m-down" type="number" value="13000000" min="0" max="1000000000000" step="0.01" required></label>
+              <label>Plazo (años)<input id="m-years" type="number" value="30" min="1" max="50" step="1" required></label>
+              <label>Abono extra mensual (<span data-m-currency>CRC</span>)<input id="m-extra" type="number" value="0" min="0" step="0.01" required></label>
+            </div>
+            <details id="m-rate-details" open><summary>Tasas y referencias</summary>
+              <div id="m-rate-summary" class="rate-summary"></div>
+              <label id="m-prior-savings-label" class="check" hidden><input id="m-prior-savings" type="checkbox">Entiendo que este plan exige ahorro previo: simularé únicamente su etapa de préstamo, con ese requisito ya cumplido.</label>
+              <div id="m-benchmarks" class="fields"></div>
+              <label class="check"><input id="m-manual" type="checkbox">Usar la tasa de mi cotización en lugar de las fases públicas</label>
+              <label id="m-manual-label" hidden>Tasa nominal anual de tu cotización (%)<input id="m-rate" type="number" min="0" max="100" step="0.001" disabled><small>Supone esta tasa durante todo el plazo. No se atribuye al banco como oferta pública.</small></label>
+              <p class="help">En una tasa variable, el escenario base mantiene la referencia ingresada; no predice la TBP, PRIME u otro índice futuro.</p>
+            </details>
+            <details><summary>Costos de cierre y seguros</summary><p class="help">Los campos sin tarifa pública son supuestos editables, no cobros confirmados. Revisa el desglose de la oferta.</p>
+              <label id="m-prepay-public-label" class="check" hidden><input id="m-prepay-public" type="checkbox">Usar las etapas de penalización publicadas</label>
+              <p id="m-prepay-summary" class="help"></p>
+              <div class="fields">
+                <label>Traspaso, timbres y honorarios (% del precio)<input id="m-legal" type="number" value="3" min="0" max="20" step="0.01" required><small>Estimación agrupada. Confirma impuestos, IVA y base de avalúo.</small></label>
+                <label>Avalúo (<span data-m-currency>CRC</span>)<input id="m-appraisal" type="number" value="100000" min="0" step="0.01" required><small id="m-appraisal-note">Estimado.</small></label>
+                <label>Apertura (% del crédito)<input id="m-opening" type="number" value="1.5" min="0" max="20" step="0.001" required><small id="m-opening-note">Estimado.</small></label>
+                <label>Comisión mínima de apertura (<span data-m-currency>CRC</span>)<input id="m-min-opening" type="number" value="0" min="0" step="0.01" required></label>
+                <label>Vida (% anual del saldo)<input id="m-life" type="number" value="0.36" min="0" max="20" step="0.001" required><small id="m-life-note">Supuesto; edad y coberturas cambian la prima.</small></label>
+                <label>Inmueble (% anual del precio)<input id="m-property-ins" type="number" value="0.2" min="0" max="20" step="0.001" required><small id="m-property-ins-note">Precio como aproximación al valor asegurable.</small></label>
+                <label>Comisión sobre abonos extra (%)<input id="m-prepay" type="number" value="0" min="0" max="30" step="0.01" required></label>
+                <label>Se cobra hasta el mes<input id="m-prepay-until" type="number" value="0" min="0" max="600" step="1" required><small>Si no hay dato, no se incorpora: debes confirmarla.</small></label>
+              </div>
+              <label class="check"><input id="m-finance-closing" type="checkbox">Financiar cierre, avalúo y apertura (sujeto a aceptación y límite del banco)</label>
+            </details>
+            <details><summary>Presupuesto del hogar y escenarios de riesgo</summary>
+              <div class="fields">
+                <label>Moneda de tus ingresos<select id="m-income-currency"><option value="CRC">CRC</option><option value="USD">USD</option></select></label>
+                <label>Ingreso neto antes de cuotas de préstamos<input id="m-income" type="number" value="1500000" min="0" step="0.01" required></label>
+                <label>Otras cuotas, en moneda del ingreso<input id="m-other-debt" type="number" value="0" min="0" step="0.01" required></label>
+                <label>Límite presupuestario elegido (%)<input id="m-budget-limit" type="number" value="25" min="1" max="100" step="1" required><small>Criterio personal; no es una regla universal de SUGEF.</small></label>
+                <label>Impuesto inmobiliario (% anual)<input id="m-property-tax" type="number" value="0.25" min="0" max="10" step="0.01" required><small>Precio como proxy del valor fiscal; no incluye impuesto solidario.</small></label>
+                <label>Mantenimiento (% anual del precio)<input id="m-maintenance" type="number" value="0.5" min="0" max="20" step="0.01" required><small>Supuesto editable.</small></label>
+                <label>Condominio por mes (<span data-m-currency>CRC</span>)<input id="m-hoa" type="number" value="0" min="0" step="0.01" required></label>
+                <label>Aumento de referencias (puntos porcentuales)<input id="m-stress" type="number" value="3" min="0" max="20" step="0.1" required></label>
+                <label>Alza del dólar para probar (%)<input id="m-fx-stress" type="number" value="20" min="0" max="200" step="1" required></label>
+              </div>
+            </details>
+            <p id="m-error" class="error" role="alert" hidden></p>
+            <button type="submit" class="button primary full">Calcular el costo completo</button>
+          </form>
+          <div id="m-product-detail" class="panel product-detail"></div>
+        </div>
+        <div class="results-column">
+          <div id="m-empty" class="panel empty"><span class="big-number">₡</span><h2>Menos sorpresas al firmar.</h2><p>Elige una oferta y revisa sus supuestos. Aquí verás la cuota, seguros, cierre y cambios de tasa.</p></div>
+          <div id="m-results" hidden>
+            <p id="m-scenario-label" class="notice"></p>
+            <div id="m-kpis" class="kpi-grid"></div>
+            <div class="panel"><h2>Lo que pagas, separado</h2><div id="m-breakdown"></div><div id="m-warnings"></div></div>
+            <div class="panel"><h2>El saldo a lo largo del camino</h2><div id="m-chart" class="chart"></div><div class="actions"><button id="m-csv" class="button secondary" type="button">Descargar amortización CSV</button><button id="m-use-rent" class="button quiet" type="button">Llevar a alquiler vs. compra →</button></div></div>
+            <div class="panel"><h2>Comparar ofertas de esta moneda</h2><p class="help">Mismo precio, prima y plazo; cada oferta usa sus tarifas publicadas y los supuestos de costos cuando falten. No es un ranking de aprobación.</p><button id="m-compare" class="button secondary" type="button">Preparar comparación</button><div id="m-comparison"></div></div>
+          </div>
+        </div>
+      </div>
+      <p id="m-live" class="sr-only" role="status"></p>
+    </section>
+
+    <section id="alquilar" data-view hidden aria-labelledby="rent-title">
+      <div class="page-heading"><p class="eyebrow">02 / TIEMPO Y VIVIENDA</p><h1 id="rent-title" tabindex="-1">Esperar también es una decisión.</h1><p class="lead">Comprar ahora, alquilar mientras reúnes una prima mayor o seguir alquilando. Compara patrimonio y efectivo, no solo alquiler contra cuota.</p></div>
+      <div class="notice">Esta herramienta usa la moneda, oferta, plazo y costos de la calculadora hipotecaria. <a href="#hipoteca">Configúralos primero</a>. Una oferta de hoy no garantiza las condiciones de un préstamo futuro.</div>
+      <div class="workspace">
+        <form id="r-form" class="panel" novalidate>
+          <h2>El mismo punto de partida</h2><p id="r-loan-summary" class="help"></p>
+          <div class="fields">
+            <label>Ahorro disponible hoy (<span data-m-currency>CRC</span>)<input id="r-savings" type="number" value="17000000" min="0" step="0.01" required></label>
+            <label>Presupuesto mensual para vivienda y ahorro<input id="r-budget" type="number" value="600000" min="1" step="0.01" required></label>
+            <label>Alquiler mensual actual<input id="r-rent" type="number" value="250000" min="0" step="0.01" required></label>
+            <label>Prima al comprar ahora (%)<input id="r-down" type="number" value="20" min="1" max="100" step="0.1" required></label>
+            <label>Prima que quieres reunir mientras alquilas (%)<input id="r-target" type="number" value="40" min="1" max="100" step="0.1" required></label>
+            <label>Horizonte común (años)<input id="r-years" type="number" value="15" min="1" max="40" step="1" required></label>
+          </div>
+          <details open><summary>Supuestos de largo plazo</summary><p class="help">Son escenarios elegidos por ti, no pronósticos del mercado.</p><div class="fields">
+            <label>Cambio anual del precio de vivienda (%)<input id="r-home-growth" type="number" value="3" min="-20" max="30" step="0.1" required></label>
+            <label>Aumento anual del alquiler (%)<input id="r-rent-growth" type="number" value="3" min="-20" max="30" step="0.1" required></label>
+            <label>Rendimiento neto del ahorro (%)<input id="r-return" type="number" value="3" min="-50" max="50" step="0.1" required><small>Después de comisiones e impuestos; el dinero para la prima necesita liquidez.</small></label>
+            <label>Aumento anual del presupuesto (%)<input id="r-budget-growth" type="number" value="2" min="-20" max="30" step="0.1" required></label>
+            <label>Costo de vender al final (% del valor)<input id="r-sale-cost" type="number" value="5" min="0" max="20" step="0.1" required><small>Supuesto; no determina impuestos de una venta real.</small></label>
+          </div></details>
+          <p id="r-error" class="error" role="alert" hidden></p><button class="button primary full" type="submit">Comparar los tres caminos</button>
+        </form>
+        <div><div id="r-results" class="panel"><h2>No hay una respuesta para todas las familias.</h2><p>El modelo asigna a ahorro el presupuesto que no se usa en vivienda. Mantiene iguales los recursos iniciales y el horizonte en las tres alternativas.</p></div><div class="panel"><h2>Cómo leer esta comparación</h2><p>Patrimonio final = efectivo + valor de venta estimado de la casa − deuda pendiente − faltantes. Una casa no es dinero disponible de inmediato.</p><p>Se incluyen cierre, crédito, seguros, mantenimiento, impuesto inmobiliario y condominio ingresados. No se calculan aprobación bancaria, beneficios del bono, impuesto solidario, impuestos específicos de la venta, depósitos de alquiler ni gastos de mudanza.</p><p>Si aparece un faltante, ese camino necesita más recursos. No interpretes su patrimonio como un resultado alcanzable con el presupuesto actual.</p></div></div>
+      </div><p id="r-live" class="sr-only" role="status"></p>
+    </section>
+
+    <section id="inversiones" data-view hidden aria-labelledby="invest-title">
+      <div class="page-heading"><p class="eyebrow">03 / AHORRO E INVERSIÓN</p><h1 id="invest-title" tabindex="-1">Primero entiende. Después compara.</h1><p class="lead">Un depósito, un fondo y una pensión no hacen el mismo trabajo. Aquí puedes revisar condiciones e historia sin confundirlas con una promesa de rendimiento.</p></div>
+      <div class="catalog-toolbar panel"><label class="search-label">Buscar entidad o producto<input id="i-search" type="search" placeholder="Banco, fondo, S&P 500…" autocomplete="off"></label><label>Tipo<select id="i-category"><option value="">Todos los tipos</option></select></label><label>Moneda<select id="i-currency-filter"><option value="">Todas</option><option>CRC</option><option>USD</option><option>EUR</option><option>CAD</option><option value="MULTI">Por confirmar / varias</option></select></label><label class="check"><input id="i-history-only" type="checkbox">Con observaciones históricas</label></div>
+      <div class="catalog-caption"><p id="i-count" role="status"></p><span>Sin tasa publicada ≠ tasa cero</span></div>
+      <div id="i-catalog" class="catalog-grid"></div>
+      <div class="pagination"><button id="i-prev" class="button quiet" type="button">← Anterior</button><span id="i-page"></span><button id="i-next" class="button quiet" type="button">Siguiente →</button></div>
+      <section id="i-selected" hidden aria-labelledby="i-selected-title">
+        <div class="section-heading"><div><p class="eyebrow">EL PRODUCTO, SIN LETRA PEQUEÑA ESCONDIDA</p><h2 id="i-selected-title" tabindex="-1"></h2></div><span id="i-selected-currency" class="tag"></span></div>
+        <div id="i-detail" class="panel"></div>
+        <p id="i-currency-warning" class="notice warning" hidden>Esta ficha no permite asignar una moneda inequívoca. No se convierte en USD por defecto ni se proyecta como si sus condiciones estuvieran confirmadas. Cotiza la moneda y los términos antes de invertir.</p>
+        <div class="workspace investment-workspace">
+          <form id="i-form" class="panel" novalidate>
+            <h2>Tu escenario, no una promesa</h2>
+            <div class="fields">
+              <label>Aporte inicial (<span data-i-currency>CRC</span>)<input id="i-initial" type="number" value="1000000" min="0" step="0.01" required></label>
+              <label>Aporte al final de cada mes<input id="i-monthly" type="number" value="25000" min="0" step="0.01" required></label>
+              <label>Horizonte (años)<input id="i-years" type="number" value="10" min="1" max="60" step="1" required></label>
+              <label>Inflación supuesta (%)<input id="i-inflation" type="number" value="3" min="-10" max="50" step="0.1" required></label>
+              <label id="i-tier-label" class="span-2" hidden>Tramo y plazo publicado<select id="i-tier"></select></label>
+              <label id="i-deposit-days-label" hidden>Plazo del depósito en días<input id="i-deposit-days" type="number" min="1" max="3660" step="1" disabled><small>Dentro del tramo elegido. Si no está publicado, requiere el plazo de tu cotización.</small></label>
+              <label>Tasa / rendimiento anual a simular (%)<input id="i-rate" type="number" min="-99" max="100" step="0.0001" required></label>
+              <label>Convención elegida para el escenario<select id="i-rate-basis"><option value="effective">Efectiva anual</option><option value="nominal">Nominal anual</option></select></label>
+              <label id="i-day-basis-label" hidden>Base de días del depósito<select id="i-day-basis"><option value="360">360 días</option><option value="365">365 días</option></select></label>
+              <label>Variación para escenarios (puntos porcentuales)<input id="i-range" type="number" value="3" min="0" max="50" step="0.1" required></label>
+            </div>
+            <p id="i-rate-note" class="notice"></p>
+            <button id="i-use-history" type="button" class="button quiet" hidden>Usar crecimiento anualizado de los años comparables</button>
+            <label class="check"><input id="i-net-fees" type="checkbox">El rendimiento ya descuenta administración y comisión sobre rendimiento</label>
+            <details open><summary>Comisiones e impuestos modelados</summary><p id="i-cost-note" class="help"></p><div class="fields">
+              <label>Administración anual sobre saldo (%)<input id="i-annual-fee" type="number" value="0" min="0" max="30" step="0.001" required></label>
+              <label>Comisión sobre rendimiento positivo mensual (%)<input id="i-performance-fee" type="number" value="0" min="0" max="100" step="0.001" required><small>Aproximación de devengo; no representa reglas de recuperación de pérdidas ni máximos históricos.</small></label>
+              <label>Comisión sobre cada aporte (%)<input id="i-entry-fee" type="number" value="0" min="0" max="100" step="0.001" required></label>
+              <label>Mantenimiento mensual fijo<input id="i-monthly-fixed" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Tratamiento tributario del escenario<select id="i-tax-mode"><option value="annual-gain">Sobre rendimiento positivo anual</option><option value="monthly-gain">Sobre rendimiento positivo mensual</option><option value="exit-gain">Sobre ganancia al final</option><option value="dividends">Solo dividendos supuestos</option><option value="none">Ya descontado / no modelar</option></select></label>
+              <label>Retención / impuesto supuesto (%)<input id="i-tax" type="number" value="15" min="0" max="100" step="0.1" required></label>
+              <label id="i-dividend-label" hidden>Dividendos supuestos (% anual del saldo)<input id="i-dividend" type="number" value="2" min="0" max="100" step="0.1" required></label>
+            </div><p class="help">No determina tu obligación tributaria. Las exenciones, el domicilio fiscal y el régimen del producto importan. No se aplica 30 % a toda la valorización de una inversión estadounidense.</p></details>
+            <details id="i-transfer-details"><summary>Transferencias, cambio de moneda y salida</summary><p class="help">Montos fijos en la moneda de la proyección. Los costos se restan del dinero que envías; agrupar aportes evita repetir comisiones, pero retrasa la inversión.</p><div class="fields">
+              <label class="span-2">Ruta / tarifa como referencia<select id="i-transfer-route"><option value="">Usar costos editables</option></select></label>
+              <label>Gasto fijo por envío (incluye corresponsal supuesto)<input id="i-transfer-fixed" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Comisión bancaria sobre envío (%)<input id="i-transfer-pct" type="number" value="0" min="0" max="100" step="0.001" required></label>
+              <label>Fijo bancario dentro del mínimo y máximo<input id="i-transfer-base-fixed" type="number" value="0" min="0" step="0.01" required><small>La ruta BN incluye un componente fijo antes de aplicar sus límites. No se suma de nuevo afuera.</small></label>
+              <label>Mínimo de la comisión bancaria<input id="i-transfer-min" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Máximo de esa comisión (0 = sin tope)<input id="i-transfer-max" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Comisión estimada por compra / orden<input id="i-trade-fixed" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Costo cambiario de entrada (%)<input id="i-fx-spread" type="number" value="0" min="0" max="100" step="0.001" required></label>
+              <label>Agrupar envíos cada<select id="i-cadence"><option value="1">Mes</option><option value="3">Tres meses</option><option value="6">Seis meses</option><option value="12">Año</option></select></label>
+              <label>Gastos fijos al retirar al final<input id="i-exit-fixed" type="number" value="0" min="0" step="0.01" required></label>
+              <label>Salida y cambio de vuelta (% del saldo)<input id="i-exit-pct" type="number" value="0" min="0" max="100" step="0.001" required></label>
+            </div><p id="i-transfer-note" class="help"></p></details>
+            <p id="i-error" class="error" role="alert" hidden></p><button type="submit" class="button primary full">Proyectar con estos supuestos</button>
+          </form>
+          <div><div id="i-results" class="panel empty"><h2>El futuro no viene con una tasa fija.</h2><p>Revisa el origen de la tasa, las comisiones y el plazo antes de proyectar.</p></div><div class="panel"><h2>Una lectura prudente</h2><p>Los escenarios no son probabilidades. No incorporan volatilidad, insolvencia, cambios tributarios ni la secuencia real de rendimientos. Para una meta cercana, la liquidez puede importar más que el porcentaje.</p><p>Un bróker no es una inversión ni tiene una rentabilidad propia. El ROP no es un producto de aportes libres y el IVM no se puede proyectar como una cuenta individual. Una pensión voluntaria no es un fondo de emergencia.</p><p>La proyección no pronostica el tipo de cambio. Elige una inflación coherente con la moneda y canasta de referencia; una meta en otra moneda tiene riesgo adicional.</p></div></div>
+        </div>
+      </section><p id="i-live" class="sr-only" role="status"></p>
+    </section>
+
+    <section id="fuentes" data-view hidden aria-labelledby="sources-title">
+      <div class="page-heading"><p class="eyebrow">TRANSPARENCIA / CATÁLOGO OFFLINE</p><h1 id="sources-title" tabindex="-1">Puedes revisar de dónde sale cada número.</h1><p class="lead">El catálogo conserva datos, condiciones, observaciones históricas y referencias localmente. Los enlaces a documentos externos solo necesitan internet si decides abrirlos.</p></div>
+      <div class="panel"><h2>Estado de esta edición de datos</h2><div id="data-summary"></div><div class="actions"><a class="button secondary" href="datos/mercado.json" download>Descargar catálogo JSON</a><a class="button quiet" href="ACTUALIZACION.md">Procedimiento de actualización</a></div></div>
+      <div id="coverage-list"></div>
+      <div class="panel"><h2>Cómo calculamos</h2><div class="method-grid">
+        <div><h3>Hipoteca</h3><p>Amortización mensual sobre saldo. Tasa nominal anual dividida entre doce; recálculo al cambiar la tasa, usando el plazo contractual restante. Última cuota parcial. Vida sobre saldo e inmueble sobre precio aproximado. Los abonos extra pueden tener penalización.</p></div>
+        <div><h3>Alquiler frente a compra</h3><p>Mismo efectivo inicial, horizonte y presupuesto. El excedente se ahorra; los faltantes se muestran, no se esconden como deuda gratis. La compra al alcanzar la prima ocurre al cierre de un mes. Se descuentan costos estimados de venta al comparar patrimonio.</p></div>
+        <div><h3>Inversión</h3><p>Capitalización mensual efectiva, aportes al final del periodo y comisiones visibles. Los envíos agrupados permanecen en efectivo hasta invertirse. No se vuelve a restar administración si la serie ya es neta. El CDP muestra además su cálculo simple al vencimiento.</p></div>
+        <div><h3>Historia</h3><p>Solo se ofrece un crecimiento histórico combinado cuando existen al menos tres años calendario consecutivos, no duplicados y de igual base. Se usa media geométrica. Ventanas móviles, YTD, índices de referencia y rendimientos de otros fondos no se mezclan.</p></div>
+      </div><p class="notice warning">Registrado, supervisado o con un prospecto no significa garantizado. Un dato faltante no es cero. «Leído» y «parcial» distinguen el alcance de revisión de un prospecto. El catálogo no certifica que toda oferta del mercado esté cubierta.</p></div>
+      <div class="panel"><h2>Instituciones del inventario</h2><div id="institution-table"></div></div>
+      <div class="panel"><h2>Fuentes de esta revisión</h2><label>Filtrar fuentes<input id="source-search" type="search" placeholder="Institución, documento o dominio…"></label><div id="source-list"></div></div>
+      <div class="panel"><h2>Privacidad y uso</h2><p>No se envían tus cifras, no hay analítica, cookies ni servicios de cálculo remotos. Los escenarios no se guardan automáticamente. Un CSV que descargues permanece bajo tu control; puede contener información financiera personal.</p><p>El sitio es educativo, no brinda asesoría personalizada ni garantiza tasas, disponibilidad, aprobación o resultados. Los nombres de entidades identifican fuentes; no implican patrocinio o recomendación.</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><div><strong>El método aburrido</strong><p>Un paso posible vale más que una promesa imposible.</p></div><div><a href="libro/index.html">Leer el libro</a><a href="#fuentes">Fuentes y límites</a><span>© 2026 Mario Barrantes · Sin anuncios ni seguimiento</span></div></div></footer>
+</body>
+</html>

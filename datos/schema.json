@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Catalogo financiero offline de Costa Rica",
+  "type": "object",
+  "required": ["schemaVersion", "asOf", "sources", "institutions", "mortgages", "investments", "coverage"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "asOf": {"type": "string", "format": "date"},
+    "nextReview": {"type": "string", "format": "date"},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "institutions": {"type": "array", "items": {"$ref": "#/$defs/institution"}},
+    "mortgages": {"type": "array", "items": {"$ref": "#/$defs/mortgage"}},
+    "investments": {"type": "array", "items": {"$ref": "#/$defs/investment"}},
+    "benchmarks": {"type": "array", "items": {"$ref": "#/$defs/benchmark"}},
+    "coverage": {"type": "array", "items": {"$ref": "#/$defs/coverage"}}
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "url", "accessedOn", "status"],
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "url": {"type": "string", "format": "uri"},
+        "accessedOn": {"type": "string", "format": "date"},
+        "documentDate": {"type": ["string", "null"]},
+        "status": {"enum": ["verified", "blocked", "unavailable"]},
+        "kind": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "institution": {
+      "type": "object",
+      "required": ["id", "name", "type", "regulator", "sourceIds"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "type": {"enum": ["bank", "finance", "mutual", "cooperative", "pension", "safi", "broker", "exchange", "public", "other"]},
+        "regulator": {"type": "string"},
+        "sourceIds": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "ratePhase": {
+      "type": "object",
+      "required": ["fromMonth", "toMonth", "kind", "sourceIds"],
+      "properties": {
+        "fromMonth": {"type": "integer", "minimum": 1},
+        "toMonth": {"type": ["integer", "null"]},
+        "kind": {"enum": ["fixed", "indexed"]},
+        "annualPct": {"type": ["number", "null"], "minimum": 0},
+        "benchmark": {"type": ["string", "null"]},
+        "spreadPct": {"type": ["number", "null"]},
+        "floorPct": {"type": ["number", "null"]},
+        "capPct": {"type": ["number", "null"]},
+        "sourceIds": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "mortgage": {
+      "type": "object",
+      "required": ["id", "institutionId", "name", "currency", "status", "rates", "requirements", "notes", "sourceIds", "reviewedOn"],
+      "properties": {
+        "id": {"type": "string"},
+        "institutionId": {"type": "string"},
+        "name": {"type": "string"},
+        "currency": {"enum": ["CRC", "USD"]},
+        "status": {"enum": ["published", "starting-from", "quote-required", "historical"]},
+        "maxTermMonths": {"type": ["integer", "null"], "minimum": 1},
+        "minTermMonths": {"type": ["integer", "null"], "minimum": 1},
+        "allowedTermsMonths": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+        "requiresPriorSavings": {"type": "boolean"},
+        "requiredSavingsMonths": {"type": "integer", "minimum": 1},
+        "maxLtv": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "minLoan": {"type": ["number", "null"], "minimum": 0},
+        "maxLoan": {"type": ["number", "null"], "minimum": 0},
+        "rates": {"type": "array", "items": {"$ref": "#/$defs/ratePhase"}},
+        "originationFeePct": {"type": ["number", "null"], "minimum": 0},
+        "minimumOriginationFee": {"type": ["number", "null"], "minimum": 0},
+        "appraisalFixed": {"type": ["number", "null"], "minimum": 0},
+        "lifeInsuranceAnnualPct": {"type": ["number", "null"], "minimum": 0},
+        "propertyInsuranceAnnualPct": {"type": ["number", "null"], "minimum": 0},
+        "prepaymentFeePct": {"type": ["number", "null"], "minimum": 0},
+        "prepaymentFeeUntilMonth": {"type": ["integer", "null"]},
+        "prepaymentFees": {"type": "array", "items": {"type": "object", "required": ["fromMonth", "toMonth", "pct", "sourceIds"], "properties": {
+          "fromMonth": {"type": "integer", "minimum": 1},
+          "toMonth": {"type": ["integer", "null"]},
+          "pct": {"type": "number", "minimum": 0, "maximum": 30},
+          "sourceIds": {"type": "array", "items": {"type": "string"}}
+        }}},
+        "validUntil": {"type": ["string", "null"]},
+        "requirements": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "sourceIds": {"type": "array", "items": {"type": "string"}},
+        "reviewedOn": {"type": "string", "format": "date"}
+      }
+    },
+    "fee": {
+      "type": "object",
+      "required": ["label", "kind", "value", "status", "sourceIds"],
+      "properties": {
+        "label": {"type": "string"},
+        "kind": {"enum": ["annual-assets-pct", "contribution-pct", "transaction-fixed", "transaction-pct", "exit-fixed", "transfer-fixed", "transfer-pct", "performance-pct", "other"]},
+        "value": {"type": ["number", "null"], "minimum": 0},
+        "currency": {"type": ["string", "null"]},
+        "minimum": {"type": ["number", "null"]},
+        "maximum": {"type": ["number", "null"]},
+        "status": {"enum": ["published-current", "published-maximum", "estimated", "quote-required"]},
+        "notes": {"type": "string"},
+        "sourceIds": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "history": {
+      "type": "object",
+      "required": ["period", "valuePct", "measure", "returnBasis", "sourceId"],
+      "properties": {
+        "period": {"type": "string"},
+        "valuePct": {"type": "number", "minimum": -100},
+        "measure": {"enum": ["calendar-year", "trailing-12-month", "annualized-period", "year-to-date", "quoted-rate"]},
+        "returnBasis": {"enum": ["gross", "net-of-fees", "net-of-tax", "net-of-fees-and-tax", "unknown"]},
+        "sourceId": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "transferRoute": {
+      "type": "object",
+      "required": ["id", "label", "currency", "status", "transferPct", "transferMinimum", "transferMaximum", "transferBaseFixed", "transferFixed", "sourceIds", "notes"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "currency": {"enum": ["CRC", "USD", "EUR"]},
+        "status": {"enum": ["published-current"]},
+        "transferPct": {"type": "number", "minimum": 0, "maximum": 100},
+        "transferMinimum": {"type": "number", "minimum": 0},
+        "transferMaximum": {"type": "number", "minimum": 0},
+        "transferBaseFixed": {"type": "number", "minimum": 0},
+        "transferFixed": {"type": "number", "minimum": 0},
+        "sourceIds": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "investment": {
+      "type": "object",
+      "required": ["id", "institutionId", "name", "category", "currency", "status", "annualRatePct", "rateBasis", "returnBasis", "fees", "history", "risks", "sourceIds", "reviewedOn"],
+      "properties": {
+        "id": {"type": "string"},
+        "institutionId": {"type": "string"},
+        "name": {"type": "string"},
+        "category": {"enum": ["savings", "term-deposit", "pension-mandatory", "pension-voluntary", "money-market", "income-fund", "equity-fund", "real-estate-fund", "development-fund", "other-fund", "broker"]},
+        "currency": {"enum": ["CRC", "USD", "EUR", "CAD", "MULTI"]},
+        "status": {"enum": ["published", "quote-required", "registered-no-public-terms", "inactive"]},
+        "annualRatePct": {"type": ["number", "null"], "minimum": -100},
+        "rateBasis": {"enum": ["nominal", "effective", "unknown"]},
+        "returnBasis": {"enum": ["gross", "net-of-fees", "net-of-tax", "net-of-fees-and-tax", "unknown"]},
+        "termDays": {"type": ["integer", "null"], "minimum": 1},
+        "minInitial": {"type": ["number", "null"], "minimum": 0},
+        "minContribution": {"type": ["number", "null"], "minimum": 0},
+        "liquidity": {"type": "string"},
+        "registryId": {"type": ["string", "null"]},
+        "fees": {"type": "array", "items": {"$ref": "#/$defs/fee"}},
+        "history": {"type": "array", "items": {"$ref": "#/$defs/history"}},
+        "rateTiers": {"type": "array", "items": {"type": "object"}},
+        "transferRoutes": {"type": "array", "items": {"$ref": "#/$defs/transferRoute"}},
+        "tax": {"type": "object", "properties": {"withholdingPct": {"type": ["number", "null"]}, "notes": {"type": "string"}, "sourceIds": {"type": "array", "items": {"type": "string"}}}},
+        "prospectus": {"type": "object", "properties": {"sourceId": {"type": ["string", "null"]}, "reviewStatus": {"enum": ["read", "partial", "unavailable", "not-applicable"]}, "documentDate": {"type": ["string", "null"]}, "notes": {"type": "string"}}},
+        "risks": {"type": "array", "items": {"type": "string"}},
+        "requirements": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "sourceIds": {"type": "array", "items": {"type": "string"}},
+        "reviewedOn": {"type": "string", "format": "date"}
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "required": ["id", "name", "value", "observedOn", "sourceIds"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "value": {"type": ["number", "null"]},
+        "observedOn": {"type": ["string", "null"]},
+        "sourceIds": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["scope", "universeCount", "registrySourceIds", "notes", "gaps"],
+      "properties": {
+        "scope": {"type": "string"},
+        "universeCount": {"type": ["integer", "null"]},
+        "registrySourceIds": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"},
+        "gaps": {"type": "array", "items": {"type": "object", "required": ["name", "reason"], "properties": {"name": {"type": "string"}, "reason": {"type": "string"}, "sourceIds": {"type": "array", "items": {"type": "string"}}}}}
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+"use strict";
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.resolve(__dirname, "..");
+const source = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(root, "..", "Libro", "Revision_v2");
+const destination = path.join(root, "libro");
+fs.mkdirSync(destination, {recursive: true});
+fs.mkdirSync(path.join(root, "assets"), {recursive: true});
+const book = fs.readFileSync(path.join(source, "El_metodo_aburrido_v2.html"), "utf8");
+const navigation = '<nav class="barra" aria-label="Navegación del sitio"><a href="../index.html">← Libro y herramientas</a> · <a href="el-metodo-aburrido-v2.pdf" download>Descargar PDF</a></nav>';
+fs.writeFileSync(path.join(destination, "index.html"), book.replace("<body>", `<body>\n${navigation}`));
+fs.copyFileSync(path.join(source, "El_metodo_aburrido_v2.pdf"), path.join(destination, "el-metodo-aburrido-v2.pdf"));
+fs.copyFileSync(path.join(source, "..", "portada_buey.svg"), path.join(root, "assets", "portada.svg"));
+console.log("HTML, PDF y portada copiados al sitio. Originales sin modificaciones.");

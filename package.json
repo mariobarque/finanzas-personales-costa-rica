@@ -1,0 +1,15 @@
+{
+  "name": "el-metodo-aburrido",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Libro y herramientas financieras offline para Costa Rica",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "test": "node --test",
+    "test:browser": "node scripts/probar-navegador.cjs",
+    "datos": "node scripts/compilar-datos.cjs",
+    "libro": "node scripts/preparar-libro.cjs",
+    "check": "node scripts/comprobar-sitio.cjs",
+    "dev": "node scripts/servidor.cjs"
+  }
+}
